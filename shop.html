@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop All | Revive Beauty Co.</title>
+
+<style>
+:root {
+    --pink: #f8dce6;
+    --green: #c9dfc5;
+    --darkgreen: #263e32;
+    --cream: #faf8f5;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #222;
+    background: white;
+}
+
+.announcement {
+    background: var(--pink);
+    text-align: center;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+header {
+    text-align: center;
+    padding: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    color: var(--darkgreen);
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+nav a {
+    text-decoration: none;
+    color: #222;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+nav a:hover { color: #b66b88; }
+
+.shop-heading {
+    text-align: center;
+    padding: 65px 20px 35px;
+}
+
+.shop-heading h1 {
+    font-family: Georgia, serif;
+    font-size: 45px;
+    color: var(--darkgreen);
+}
+
+.shop-heading p { color: #666; }
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    max-width: 1300px;
+    margin: auto;
+    padding: 30px 5% 80px;
+}
+
+.product-card {
+    border: 1px solid #eee;
+    background: white;
+    padding: 15px;
+}
+
+.product-image {
+    height: 240px;
+    background: linear-gradient(135deg, #f8dce6, #faf8f5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 85px;
+}
+
+.product-card h2 {
+    font-family: Georgia, serif;
+    font-size: 23px;
+    color: var(--darkgreen);
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #a65373;
+}
+
+label {
+    display: block;
+    margin: 15px 0 7px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+select, input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button, .btn {
+    display: inline-block;
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    border: none;
+    background: var(--darkgreen);
+    color: white;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+button:hover, .btn:hover {
+    background: #456653;
+}
+
+.note {
+    font-size: 12px;
+    color: #666;
+}
+
+footer {
+    background: var(--darkgreen);
+    color: white;
+    text-align: center;
+    padding: 35px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+    YOUR LIPS. YOUR SHADE. YOUR REVIVAL. 💗
+</div>
+
+<header>
+    <div class="logo">REVIVE BEAUTY CO.</div>
+    <p>Beauty, Reimagined.</p>
+</header>
+
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP ALL</a>
+    <a href="lipsticks.html">LIPSTICKS</a>
+    <a href="lip-gloss.html">LIP GLOSS</a>
+    <a href="lip-liners.html">LIP LINERS</a>
+    <a href="lip-combo.html">LIP COMBOS</a>
+    <a href="refills.html">REFILLS</a>
+    <a href="lipstick-try-on.html">VIRTUAL TRY-ON</a>
+    <a href="engraving.html">ENGRAVING</a>
+    <a href="basket.html">BAG 🛍️ <span id="bag-count">0</span></a>
+</nav>
+
+<section class="shop-heading">
+    <h1>THE REVIVE COLLECTION</h1>
+    <p>Discover your perfect lip essentials.</p>
+</section>
+
+<main class="product-grid">
+
+    <article class="product-card">
+        <div class="product-image">💄</div>
+        <h2>Revive Lipstick</h2>
+        <p>Refillable satin-finish lipstick.</p>
+        <p class="price">£19</p>
+
+        <label for="lipstick-shade">Choose your shade</label>
+        <select id="lipstick-shade">
+            <option>Bare Bloom</option>
+            <option>Rose Revival</option>
+            <option>Petal Kiss</option>
+            <option>Velvet Red</option>
+            <option>Berry Bliss</option>
+        </select>
+
+        <label for="engraving-text">Personalised engraving (optional +£5)</label>
+        <input id="engraving-text" maxlength="20"
+               placeholder="Enter name or initials">
+
+        <p class="note">Engraving adds £5 to your lipstick.</p>
+
+        <button onclick="addLipstick()">ADD TO BAG</button>
+    </article>
+
+    <article class="product-card">
+        <div class="product-image">✏️</div>
+        <h2>Revive Lip Liner</h2>
+        <p>Define and enhance your lips.</p>
+        <p class="price">£10</p>
+
+        <label for="liner-shade">Choose your shade</label>
+        <select id="liner-shade">
+            <option>Soft Nude</option>
+            <option>Rosewood</option>
+            <option>Deep Berry</option>
+        </select>
+
+        <button onclick="addProduct('Revive Lip Liner', 10, 'liner-shade')">
+            ADD TO BAG
+        </button>
+    </article>
+
+    <article class="product-card">
+        <div class="product-image">✨</div>
+        <h2>Revive Lip Gloss</h2>
+        <p>High-shine gloss for every look.</p>
+        <p class="price">£16</p>
+
+        <label for="gloss-shade">Choose your shade</label>
+        <select id="gloss-shade">
+            <option>Crystal Clear</option>
+            <option>Rose Glow</option>
+        </select>
+
+        <button onclick="addProduct('Revive Lip Gloss', 16, 'gloss-shade')">
+            ADD TO BAG
+        </button>
+    </article>
+
+    <article class="product-card">
+        <div class="product-image">🎀</div>
+        <h2>Build Your Own Lip Combo</h2>
+        <p>Choose a lipstick, liner and gloss. Save £5.</p>
+        <p class="price">£40</p>
+        <a class="btn" href="lip-combo.html">BUILD YOUR COMBO</a>
+    </article>
+
+    <article class="product-card">
+        <div class="product-image">🌿</div>
+        <h2>Lipstick Refill</h2>
+        <p>Refresh your lipstick without replacing its case.</p>
+        <p class="price">£13</p>
+
+        <label for="refill-shade">Choose your shade</label>
+        <select id="refill-shade">
+            <option>Bare Bloom</option>
+            <option>Rose Revival</option>
+            <option>Petal Kiss</option>
+            <option>Velvet Red</option>
+            <option>Berry Bliss</option>
+        </select>
+
+        <button onclick="addProduct('Lipstick Refill', 13, 'refill-shade')">
+            ADD TO BAG
+        </button>
+    </article>
+
+</main>
+
+<footer>
+    <h2>REVIVE BEAUTY CO.</h2>
+    <p>Your Lips. Your Shade. Your Revival.</p>
+    <p>© 2026 Revive Beauty Co. | University Demonstration Website</p>
+</footer>
+
+<script>
+function getBasket() {
+    try {
+        const data = JSON.parse(localStorage.getItem("reviveBasket"));
+        return Array.isArray(data) ? data : [];
+    } catch {
+        return [];
+    }
+}
+
+function saveBasket(basket) {
+    localStorage.setItem("reviveBasket", JSON.stringify(basket));
+    updateBagCount();
+}
+
+function updateBagCount() {
+    const count = getBasket().reduce(
+        (total, item) => total + (item.quantity || 1), 0
+    );
+    document.getElementById("bag-count").textContent = count;
+}
+
+function addToBasket(name, price, shade, engraving = "") {
+    const basket = getBasket();
+
+    basket.push({
+        id: Date.now() + "-" + Math.random().toString(36).slice(2),
+        name: name,
+        price: price,
+        shade: shade,
+        engraving: engraving,
+        quantity: 1
+    });
+
+    saveBasket(basket);
+    alert(name + " added to your bag!");
+}
+
+function addProduct(name, price, selectId) {
+    const shade = document.getElementById(selectId).value;
+    addToBasket(name, price, shade);
+}
+
+function addLipstick() {
+    const shade = document.getElementById("lipstick-shade").value;
+    const engraving = document.getElementById("engraving-text").value.trim();
+    const price = engraving ? 24 : 19;
+
+    addToBasket("Revive Lipstick", price, shade, engraving);
+}
+
+updateBagCount();
+</script>
+
+</body>
+</html>
