@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Engraving Studio | Revive Beauty Co.</title>
+
+<title>Virtual Lip Try-On | Revive Beauty Co.</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/face_mesh.js"></script>
 
 <style>
 :root {
@@ -18,8 +21,8 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    color: #222;
     background: white;
+    color: #222;
 }
 
 .announcement {
@@ -46,8 +49,8 @@ header {
 nav {
     display: flex;
     justify-content: center;
-    gap: 20px;
     flex-wrap: wrap;
+    gap: 20px;
     padding: 20px;
     border-bottom: 1px solid #eee;
 }
@@ -61,7 +64,7 @@ nav a {
 
 main {
     max-width: 1200px;
-    margin: 55px auto;
+    margin: 50px auto;
     padding: 0 20px;
 }
 
@@ -78,119 +81,146 @@ h1 {
 .intro {
     text-align: center;
     color: #666;
-    margin-bottom: 45px;
+    margin-bottom: 40px;
+    line-height: 1.6;
 }
 
 .studio {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 45px;
-    align-items: center;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 35px;
 }
 
-.preview-area {
+.preview-panel {
     background: linear-gradient(135deg, var(--pink), var(--green));
-    padding: 55px 20px;
-    text-align: center;
+    padding: 25px;
     border-radius: 8px;
-}
-
-.lipstick-case {
-    position: relative;
-    width: 125px;
-    height: 300px;
-    margin: 20px auto;
-    border-radius: 12px;
-    background: linear-gradient(
-        90deg,
-        #263e32,
-        #456653,
-        #263e32
-    );
-    box-shadow: 15px 15px 25px rgba(0,0,0,0.2);
-}
-
-.case-top {
-    height: 55%;
-    border-bottom: 5px solid #d6b86a;
-}
-
-.engraving-preview {
-    position: absolute;
-    top: 65%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #e8d49c;
-    font-family: Georgia, serif;
-    font-size: 15px;
-    letter-spacing: 1px;
-    width: 110px;
-    overflow-wrap: anywhere;
     text-align: center;
 }
 
-.preview-label {
-    font-size: 12px;
-    color: #444;
+.mirror {
+    background: white;
+    min-height: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 6px;
 }
 
-.customisation {
+canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+canvas[hidden] {
+    display: none;
+}
+
+.placeholder {
+    padding: 45px 20px;
+    color: #666;
+}
+
+.controls {
     background: var(--cream);
-    padding: 35px;
+    padding: 30px;
     border: 1px solid #eee;
 }
 
-label {
-    display: block;
-    font-weight: bold;
-    font-size: 13px;
-    margin: 20px 0 8px;
-}
-
-input, select {
-    width: 100%;
-    padding: 13px;
-    border: 1px solid #ccc;
-    font: inherit;
-}
-
-.price-box {
-    background: var(--pink);
-    padding: 20px;
-    margin-top: 25px;
-}
-
-.price-row {
-    display: flex;
-    justify-content: space-between;
-    margin: 12px 0;
-}
-
-.total {
-    border-top: 1px solid #d4b7c1;
-    padding-top: 15px;
-    font-size: 21px;
-    font-weight: bold;
+.mode-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 25px 0;
 }
 
 button {
+    cursor: pointer;
+    font: inherit;
+}
+
+.mode-btn {
+    padding: 15px 10px;
+    border: 1px solid var(--darkgreen);
+    background: white;
+    color: var(--darkgreen);
+    font-weight: bold;
+}
+
+.mode-btn.active {
+    background: var(--darkgreen);
+    color: white;
+}
+
+.action-btn {
     width: 100%;
-    padding: 16px;
+    padding: 15px;
     background: var(--darkgreen);
     color: white;
     border: none;
     font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
+    margin: 10px 0;
 }
 
-button:hover {
-    background: #456653;
+.stop-btn {
+    background: #a65373;
+}
+
+.upload-section {
+    margin: 20px 0;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    background: white;
+}
+
+.shade-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin: 25px 0;
+}
+
+.shade {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 3px solid transparent;
+    border-radius: 50%;
+}
+
+.shade.selected {
+    border-color: var(--darkgreen);
+    box-shadow: 0 0 0 2px white, 0 0 0 4px var(--darkgreen);
+}
+
+.shade-name {
+    font-size: 19px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.price {
+    font-size: 25px;
+    color: #a65373;
+    font-weight: bold;
+}
+
+.status {
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 15px;
+    min-height: 20px;
 }
 
 .note {
     font-size: 12px;
     color: #666;
+    line-height: 1.6;
 }
 
 footer {
@@ -227,87 +257,131 @@ footer {
 <nav>
     <a href="index.html">HOME</a>
     <a href="shop.html">SHOP ALL</a>
-    <a href="lipstick-try-on.html">VIRTUAL TRY-ON</a>
     <a href="engraving.html">ENGRAVING</a>
+    <a href="lipstick-try-on.html">VIRTUAL TRY-ON</a>
     <a href="basket.html">BAG 🛍️ <span id="bag-count">0</span></a>
 </nav>
 
 <main>
 
-    <h1>THE ENGRAVING STUDIO</h1>
+<h1>YOUR VIRTUAL BEAUTY MIRROR</h1>
 
-    <p class="intro">
-        Make your lipstick uniquely yours.
-        Personalise your Revive lipstick case for just £5.
-    </p>
+<p class="intro">
+    Find your perfect Revive lipstick shade.
+    Try on our collection live using your camera
+    or upload your favourite selfie.
+</p>
 
-    <div class="studio">
+<div class="studio">
 
-        <div class="preview-area">
-            <h2>YOUR PERSONALISED LIPSTICK</h2>
+    <section class="preview-panel">
+        <h2>YOUR VIRTUAL MIRROR</h2>
 
-            <div class="lipstick-case">
-                <div class="case-top"></div>
-                <div class="engraving-preview" id="preview-text">
-                    YOUR NAME
-                </div>
+        <div class="mirror">
+
+            <div id="placeholder" class="placeholder">
+                <h2>💋</h2>
+                <h3>Your perfect shade awaits.</h3>
+                <p>Choose live camera or upload a selfie to begin.</p>
             </div>
 
-            <p class="preview-label">
-                Virtual engraving preview — for illustration purposes.
-            </p>
+            <canvas id="tryon-canvas" hidden></canvas>
+
         </div>
 
-        <div class="customisation">
-            <h2>PERSONALISE YOUR LIPSTICK</h2>
+        <p id="status" class="status" role="status"></p>
+    </section>
 
-            <label for="shade">Choose your lipstick shade</label>
-            <select id="shade">
-                <option>Bare Bloom</option>
-                <option>Rose Revival</option>
-                <option>Petal Kiss</option>
-                <option>Velvet Red</option>
-                <option>Berry Bliss</option>
-            </select>
+    <section class="controls">
 
-            <label for="engraving">Your engraving</label>
-            <input
-                type="text"
-                id="engraving"
-                maxlength="20"
-                placeholder="Enter name or initials"
-            >
+        <h2>HOW WOULD YOU LIKE TO TRY ON?</h2>
 
-            <p class="note">
-                Maximum 20 characters. Your text will appear
-                on the virtual lipstick case.
-            </p>
+        <div class="mode-buttons">
+            <button id="live-mode" class="mode-btn active"
+                    type="button">
+                📷 LIVE CAMERA
+            </button>
 
-            <div class="price-box">
-                <div class="price-row">
-                    <span>Revive Lipstick</span>
-                    <span>£19.00</span>
-                </div>
-
-                <div class="price-row">
-                    <span>Personalised engraving</span>
-                    <span id="engraving-cost">£0.00</span>
-                </div>
-
-                <div class="price-row total">
-                    <span>Total</span>
-                    <span id="total-price">£19.00</span>
-                </div>
-            </div>
-
-            <button id="add-to-bag">ADD TO BAG</button>
-
-            <p class="note">
-                Engraving costs an additional £5 when selected.
-            </p>
+            <button id="photo-mode" class="mode-btn"
+                    type="button">
+                🖼️ UPLOAD SELFIE
+            </button>
         </div>
 
-    </div>
+        <div id="live-section">
+            <button id="start-camera" class="action-btn"
+                    type="button">
+                START LIVE TRY-ON
+            </button>
+
+            <button id="stop-camera" class="action-btn stop-btn"
+                    type="button" hidden>
+                STOP CAMERA
+            </button>
+        </div>
+
+        <div id="photo-section" class="upload-section" hidden>
+            <label for="photo-upload">Choose your selfie</label>
+            <input type="file" id="photo-upload" accept="image/*">
+        </div>
+
+        <h3>CHOOSE YOUR SHADE</h3>
+
+        <div class="shade-grid">
+            <button class="shade selected"
+                style="background:#B77B70"
+                data-shade="Bare Bloom"
+                aria-label="Bare Bloom"
+                aria-pressed="true"></button>
+
+            <button class="shade"
+                style="background:#A94F64"
+                data-shade="Rose Revival"
+                aria-label="Rose Revival"
+                aria-pressed="false"></button>
+
+            <button class="shade"
+                style="background:#E58A9B"
+                data-shade="Petal Kiss"
+                aria-label="Petal Kiss"
+                aria-pressed="false"></button>
+
+            <button class="shade"
+                style="background:#B71C36"
+                data-shade="Velvet Red"
+                aria-label="Velvet Red"
+                aria-pressed="false"></button>
+
+            <button class="shade"
+                style="background:#69243F"
+                data-shade="Berry Bliss"
+                aria-label="Berry Bliss"
+                aria-pressed="false"></button>
+        </div>
+
+        <p id="selected-shade" class="shade-name">Bare Bloom</p>
+        <p class="price">£19.00</p>
+
+        <button id="add-to-bag" class="action-btn" type="button">
+            ADD TO BAG
+        </button>
+
+        <p class="note">
+            This is a virtual preview. Colours may vary in real life.
+            Camera access requires your permission.
+        </p>
+
+        <p class="note">
+            Facial tracking runs in your browser.
+            This demonstration does not intentionally upload or
+            store your photos or camera recordings.
+            Facial detection software is loaded from a third-party CDN.
+        </p>
+
+    </section>
+
+</div>
+
 </main>
 
 <footer>
@@ -316,11 +390,59 @@ footer {
     <p>© 2026 Revive Beauty Co. | University Demonstration Website</p>
 </footer>
 
+<video id="camera-video" autoplay playsinline muted hidden></video>
+
 <script>
-const engravingInput = document.getElementById("engraving");
-const previewText = document.getElementById("preview-text");
-const engravingCost = document.getElementById("engraving-cost");
-const totalPrice = document.getElementById("total-price");
+const canvas = document.getElementById("tryon-canvas");
+const ctx = canvas.getContext("2d");
+
+const video = document.getElementById("camera-video");
+const placeholder = document.getElementById("placeholder");
+const statusText = document.getElementById("status");
+
+const liveSection = document.getElementById("live-section");
+const photoSection = document.getElementById("photo-section");
+
+const startButton = document.getElementById("start-camera");
+const stopButton = document.getElementById("stop-camera");
+
+const upload = document.getElementById("photo-upload");
+
+let mode = "live";
+let stream = null;
+let running = false;
+let animationId = null;
+
+let uploadedImage = null;
+let landmarks = null;
+
+let selectedShade = "Bare Bloom";
+
+let faceMesh = null;
+let processing = false;
+let generation = 0;
+
+const shades = {
+    "Bare Bloom": "#B77B70",
+    "Rose Revival": "#A94F64",
+    "Petal Kiss": "#E58A9B",
+    "Velvet Red": "#B71C36",
+    "Berry Bliss": "#69243F"
+};
+
+const outerLips = [
+    61, 40, 37, 0, 267, 270, 291,
+    321, 314, 17, 84, 91
+];
+
+const innerMouth = [
+    78, 81, 13, 311, 308,
+    402, 14, 178
+];
+
+function setStatus(message) {
+    statusText.textContent = message;
+}
 
 function getBasket() {
     try {
@@ -333,46 +455,395 @@ function getBasket() {
 
 function updateBagCount() {
     const count = getBasket().reduce(
-        (total, item) => total + (Number(item.quantity) || 1), 0
+        (total, item) => total + (Number(item.quantity) || 1),
+        0
     );
 
     document.getElementById("bag-count").textContent = count;
 }
 
-function updatePreview() {
-    const engraving = engravingInput.value.trim();
+function drawPath(points, indices) {
+    const first = points[indices[0]];
 
-    previewText.textContent = engraving || "YOUR NAME";
-    engravingCost.textContent = engraving ? "£5.00" : "£0.00";
-    totalPrice.textContent = engraving ? "£24.00" : "£19.00";
+    ctx.moveTo(
+        first.x * canvas.width,
+        first.y * canvas.height
+    );
+
+    for (let i = 1; i < indices.length; i++) {
+        const point = points[indices[i]];
+
+        ctx.lineTo(
+            point.x * canvas.width,
+            point.y * canvas.height
+        );
+    }
+
+    ctx.closePath();
 }
 
-engravingInput.addEventListener("input", updatePreview);
+function drawFrame(source) {
+    if (!source || !canvas.width || !canvas.height) return;
 
-document.getElementById("add-to-bag").addEventListener("click", function() {
-    const engraving = engravingInput.value.trim();
-    const shade = document.getElementById("shade").value;
-    const price = engraving ? 24 : 19;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const basket = getBasket();
+    ctx.drawImage(source, 0, 0, canvas.width, canvas.height);
 
-    basket.push({
-        id: Date.now() + "-" + Math.random().toString(36).slice(2),
-        name: "Revive Lipstick",
-        price: price,
-        shade: shade,
-        engraving: engraving,
-        quantity: 1
+    if (!landmarks) return;
+
+    ctx.save();
+    ctx.beginPath();
+
+    drawPath(landmarks, outerLips);
+    drawPath(landmarks, innerMouth);
+
+    ctx.clip("evenodd");
+
+    ctx.globalCompositeOperation = "multiply";
+    ctx.globalAlpha = 0.65;
+    ctx.fillStyle = shades[selectedShade];
+
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.restore();
+}
+
+async function initialiseFaceMesh() {
+    if (faceMesh) return faceMesh;
+
+    if (typeof FaceMesh === "undefined") {
+        throw new Error("Facial detection library unavailable.");
+    }
+
+    const mesh = new FaceMesh({
+        locateFile: file =>
+            "https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/" + file
     });
 
-    localStorage.setItem("reviveBasket", JSON.stringify(basket));
+    mesh.setOptions({
+        maxNumFaces: 1,
+        refineLandmarks: true,
+        minDetectionConfidence: 0.5,
+        minTrackingConfidence: 0.5
+    });
 
-    updateBagCount();
+    mesh.onResults(results => {
+        landmarks =
+            results.multiFaceLandmarks &&
+            results.multiFaceLandmarks.length
+                ? results.multiFaceLandmarks[0]
+                : null;
+    });
 
-    alert("Your personalised lipstick has been added to your bag!");
+    faceMesh = mesh;
+    return mesh;
+}
+
+function showCanvas() {
+    canvas.hidden = false;
+    placeholder.hidden = true;
+}
+
+function stopCamera() {
+    running = false;
+    generation++;
+
+    if (animationId !== null) {
+        cancelAnimationFrame(animationId);
+        animationId = null;
+    }
+
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        stream = null;
+    }
+
+    video.srcObject = null;
+
+    startButton.hidden = false;
+    stopButton.hidden = true;
+}
+
+async function cameraLoop(currentGeneration) {
+    if (!running || currentGeneration !== generation) return;
+
+    if (processing) {
+        animationId = requestAnimationFrame(
+            () => cameraLoop(currentGeneration)
+        );
+        return;
+    }
+
+    processing = true;
+
+    try {
+        const mesh = await initialiseFaceMesh();
+
+        if (!running || currentGeneration !== generation) return;
+
+        await mesh.send({image: video});
+
+        if (!running || currentGeneration !== generation) return;
+
+        drawFrame(video);
+
+    } catch (error) {
+        console.error(error);
+        stopCamera();
+        setStatus("Live tracking stopped. Please try again.");
+        return;
+    } finally {
+        processing = false;
+    }
+
+    if (running && currentGeneration === generation) {
+        animationId = requestAnimationFrame(
+            () => cameraLoop(currentGeneration)
+        );
+    }
+}
+
+async function startCamera() {
+    stopCamera();
+
+    uploadedImage = null;
+    landmarks = null;
+
+    if (!navigator.mediaDevices ||
+        !navigator.mediaDevices.getUserMedia) {
+        setStatus("Camera access is not supported in this browser.");
+        return;
+    }
+
+    setStatus("Requesting camera permission...");
+
+    try {
+        const cameraStream =
+            await navigator.mediaDevices.getUserMedia({
+                audio: false,
+                video: {
+                    facingMode: "user",
+                    width: {ideal: 640},
+                    height: {ideal: 480}
+                }
+            });
+
+        if (mode !== "live") {
+            cameraStream.getTracks().forEach(track => track.stop());
+            return;
+        }
+
+        stream = cameraStream;
+        video.srcObject = stream;
+
+        await video.play();
+
+        canvas.width = video.videoWidth || 640;
+        canvas.height = video.videoHeight || 480;
+
+        showCanvas();
+
+        running = true;
+        const currentGeneration = ++generation;
+
+        startButton.hidden = true;
+        stopButton.hidden = false;
+
+        setStatus("Live try-on is running! 💋");
+
+        cameraLoop(currentGeneration);
+
+    } catch (error) {
+        console.error(error);
+        stopCamera();
+        setStatus(
+            "Unable to start camera. Check your browser permissions."
+        );
+    }
+}
+
+function loadImage(file) {
+    return new Promise((resolve, reject) => {
+        const image = new Image();
+        const url = URL.createObjectURL(file);
+
+        image.onload = () => {
+            URL.revokeObjectURL(url);
+            resolve(image);
+        };
+
+        image.onerror = () => {
+            URL.revokeObjectURL(url);
+            reject(new Error("Image could not be loaded."));
+        };
+
+        image.src = url;
+    });
+}
+
+async function processPhoto(file) {
+    stopCamera();
+
+    const currentGeneration = generation;
+
+    landmarks = null;
+    uploadedImage = null;
+
+    setStatus("Analysing your selfie...");
+
+    try {
+        const image = await loadImage(file);
+
+        if (currentGeneration !== generation ||
+            mode !== "photo") return;
+
+        uploadedImage = image;
+
+        const scale = Math.min(
+            1,
+            1200 / Math.max(image.width, image.height)
+        );
+
+        canvas.width = Math.round(image.width * scale);
+        canvas.height = Math.round(image.height * scale);
+
+        showCanvas();
+        drawFrame(image);
+
+        const mesh = await initialiseFaceMesh();
+
+        if (currentGeneration !== generation ||
+            mode !== "photo") return;
+
+        await mesh.send({image: image});
+
+        if (currentGeneration !== generation ||
+            mode !== "photo") return;
+
+        drawFrame(image);
+
+        setStatus(
+            landmarks
+                ? "Your virtual lipstick is ready! 💗"
+                : "No face detected. Try a clearer selfie."
+        );
+
+    } catch (error) {
+        console.error(error);
+        setStatus("Unable to process this photo.");
+    }
+}
+
+document.getElementById("live-mode").addEventListener(
+    "click", function() {
+        stopCamera();
+        mode = "live";
+        uploadedImage = null;
+        landmarks = null;
+
+        liveSection.hidden = false;
+        photoSection.hidden = true;
+
+        document.getElementById("live-mode")
+            .classList.add("active");
+
+        document.getElementById("photo-mode")
+            .classList.remove("active");
+
+        canvas.hidden = true;
+        placeholder.hidden = false;
+
+        setStatus("Click Start Live Try-On to begin.");
+    }
+);
+
+document.getElementById("photo-mode").addEventListener(
+    "click", function() {
+        stopCamera();
+        mode = "photo";
+        uploadedImage = null;
+        landmarks = null;
+
+        liveSection.hidden = true;
+        photoSection.hidden = false;
+
+        document.getElementById("photo-mode")
+            .classList.add("active");
+
+        document.getElementById("live-mode")
+            .classList.remove("active");
+
+        canvas.hidden = true;
+        placeholder.hidden = false;
+
+        setStatus("Upload a selfie to try your shade.");
+    }
+);
+
+startButton.addEventListener("click", startCamera);
+
+stopButton.addEventListener("click", function() {
+    stopCamera();
+    landmarks = null;
+    canvas.hidden = true;
+    placeholder.hidden = false;
+    setStatus("Camera stopped.");
 });
 
-updatePreview();
+upload.addEventListener("change", function() {
+    const file = this.files[0];
+
+    if (file) processPhoto(file);
+});
+
+document.querySelectorAll(".shade").forEach(button => {
+    button.addEventListener("click", function() {
+        document.querySelectorAll(".shade").forEach(b => {
+            b.classList.remove("selected");
+            b.setAttribute("aria-pressed", "false");
+        });
+
+        this.classList.add("selected");
+        this.setAttribute("aria-pressed", "true");
+
+        selectedShade = this.dataset.shade;
+
+        document.getElementById("selected-shade").textContent =
+            selectedShade;
+
+        if (mode === "photo" && uploadedImage) {
+            drawFrame(uploadedImage);
+        }
+    });
+});
+
+document.getElementById("add-to-bag").addEventListener(
+    "click", function() {
+        const basket = getBasket();
+
+        basket.push({
+            id: Date.now() + "-" +
+                Math.random().toString(36).slice(2),
+            name: "Revive Lipstick",
+            price: 19,
+            shade: selectedShade,
+            engraving: "",
+            quantity: 1
+        });
+
+        localStorage.setItem(
+            "reviveBasket",
+            JSON.stringify(basket)
+        );
+
+        updateBagCount();
+
+        alert(selectedShade + " lipstick added to your bag!");
+    }
+);
+
+window.addEventListener("pagehide", stopCamera);
+
 updateBagCount();
 </script>
 
