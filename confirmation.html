@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | Revive Beauty Co.</title>
+
+<style>
+:root {
+    --pink: #f8dce6;
+    --green: #c9dfc5;
+    --darkgreen: #263e32;
+    --cream: #faf8f5;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #222;
+    background: white;
+}
+
+.announcement {
+    background: var(--pink);
+    text-align: center;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+header {
+    padding: 25px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    color: var(--darkgreen);
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 18px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #eee;
+}
+
+nav a {
+    color: #222;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+main {
+    max-width: 1150px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+h1, h2 {
+    font-family: Georgia, serif;
+    color: var(--darkgreen);
+}
+
+h1 {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 40px;
+}
+
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 35px;
+}
+
+.checkout-box {
+    background: var(--cream);
+    padding: 30px;
+    border: 1px solid #eee;
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 13px;
+    margin: 18px 0 8px;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font: inherit;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.summary-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.summary-item strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin: 18px 0;
+}
+
+.total {
+    font-size: 22px;
+    font-weight: bold;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+
+button, .btn {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: var(--darkgreen);
+    color: white;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover, .btn:hover {
+    background: #456653;
+}
+
+.demo-note {
+    background: var(--green);
+    padding: 15px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.error {
+    color: #a12b45;
+    font-weight: bold;
+}
+
+footer {
+    background: var(--darkgreen);
+    color: white;
+    text-align: center;
+    padding: 35px;
+    margin-top: 60px;
+}
+
+@media (max-width: 768px) {
+    .checkout-layout, .row {
+        grid-template-columns: 1fr;
+    }
+
+    h1 { font-size: 32px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+    YOUR LIPS. YOUR SHADE. YOUR REVIVAL. 💗
+</div>
+
+<header>
+    <div class="logo">REVIVE BEAUTY CO.</div>
+    <p>Beauty, Reimagined.</p>
+</header>
+
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP ALL</a>
+    <a href="basket.html">BACK TO BAG 🛍️</a>
+</nav>
+
+<main>
+    <h1>SECURE-STYLE DEMO CHECKOUT</h1>
+
+    <div class="checkout-layout">
+
+        <div>
+            <form id="checkout-form">
+
+                <div class="checkout-box">
+                    <h2>Contact Information</h2>
+
+                    <label for="email">Email address</label>
+                    <input type="email" id="email"
+                           placeholder="demo@example.com" required>
+
+                    <div class="row">
+                        <div>
+                            <label for="first-name">First name</label>
+                            <input type="text" id="first-name" required>
+                        </div>
+
+                        <div>
+                            <label for="last-name">Last name</label>
+                            <input type="text" id="last-name" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-box">
+                    <h2>Delivery Information</h2>
+
+                    <p class="demo-note">
+                        Demonstration only: Please use fictional
+                        customer and address information.
+                    </p>
+
+                    <label for="address">Address</label>
+                    <input type="text" id="address" required>
+
+                    <label for="city">City</label>
+                    <input type="text" id="city" required>
+
+                    <label for="postcode">Postcode</label>
+                    <input type="text" id="postcode" required>
+
+                    <label for="delivery">Delivery method</label>
+                    <select id="delivery">
+                        <option value="3.99">Standard delivery — £3.99</option>
+                        <option value="5.99">Express delivery — £5.99</option>
+                    </select>
+                </div>
+
+                <div class="checkout-box">
+                    <h2>Payment Demonstration</h2>
+
+                    <p class="demo-note">
+                        This is a simulated checkout for a university
+                        assignment. No payment will be taken.
+                        Do not enter real card details.
+                    </p>
+
+                    <label for="payment">Demo payment method</label>
+                    <select id="payment">
+                        <option value="demo-card">
+                            Simulated card payment
+                        </option>
+                        <option value="demo-wallet">
+                            Simulated digital wallet
+                        </option>
+                    </select>
+                </div>
+
+                <p id="error-message" class="error" role="alert"></p>
+
+                <button type="submit" id="place-order">
+                    PLACE DEMONSTRATION ORDER
+                </button>
+
+            </form>
+        </div>
+
+        <aside>
+            <div class="checkout-box">
+                <h2>Your Order</h2>
+
+                <div id="order-items"></div>
+
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span id="subtotal">£0.00</span>
+                </div>
+
+                <div class="summary-row">
+                    <span>Delivery</span>
+                    <span id="delivery-cost">£3.99</span>
+                </div>
+
+                <div class="summary-row total">
+                    <span>Total</span>
+                    <span id="grand-total">£0.00</span>
+                </div>
+
+                <a href="basket.html" class="btn">
+                    EDIT SHOPPING BAG
+                </a>
+            </div>
+        </aside>
+
+    </div>
+</main>
+
+<footer>
+    <h2 style="color:white;">REVIVE BEAUTY CO.</h2>
+    <p>Your Lips. Your Shade. Your Revival.</p>
+    <p>© 2026 Revive Beauty Co. | University Demonstration Website</p>
+</footer>
+
+<script>
+function getBasket() {
+    try {
+        const data = JSON.parse(localStorage.getItem("reviveBasket"));
+        return Array.isArray(data) ? data : [];
+    } catch {
+        return [];
+    }
+}
+
+function money(value) {
+    return "£" + value.toFixed(2);
+}
+
+function getSubtotal(basket) {
+    return basket.reduce((total, item) => {
+        const price = Number(item.price) || 0;
+        const quantity = Math.max(1, Number(item.quantity) || 1);
+        return total + price * quantity;
+    }, 0);
+}
+
+function renderCheckout() {
+    const basket = getBasket();
+    const container = document.getElementById("order-items");
+
+    container.innerHTML = "";
+
+    basket.forEach(item => {
+        const box = document.createElement("div");
+        box.className = "summary-item";
+
+        const name = document.createElement("strong");
+        name.textContent = item.name + " × " + item.quantity;
+
+        const details = document.createElement("small");
+        details.textContent =
+            (item.shade ? "Shade: " + item.shade : "") +
+            (item.engraving ? " | Engraving: " + item.engraving : "");
+
+        const price = document.createElement("p");
+        price.textContent = money(
+            Number(item.price) * Number(item.quantity)
+        );
+
+        box.append(name, details, price);
+        container.appendChild(box);
+    });
+
+    const subtotal = getSubtotal(basket);
+    const delivery = Number(document.getElementById("delivery").value);
+
+    document.getElementById("subtotal").textContent = money(subtotal);
+    document.getElementById("delivery-cost").textContent = money(delivery);
+    document.getElementById("grand-total").textContent =
+        money(subtotal + delivery);
+
+    document.getElementById("place-order").disabled = basket.length === 0;
+
+    if (basket.length === 0) {
+        container.textContent = "Your bag is empty. Please add products first.";
+    }
+}
+
+document.getElementById("delivery").addEventListener(
+    "change", renderCheckout
+);
+
+document.getElementById("checkout-form").addEventListener(
+    "submit", function(event) {
+        event.preventDefault();
+
+        const basket = getBasket();
+
+        if (basket.length === 0) {
+            document.getElementById("error-message").textContent =
+                "Your bag is empty.";
+            return;
+        }
+
+        const subtotal = getSubtotal(basket);
+        const delivery = Number(document.getElementById("delivery").value);
+
+        const order = {
+            reference: "RBC-" +
+                Date.now().toString(36).toUpperCase(),
+            items: basket,
+            subtotal: subtotal,
+            delivery: delivery,
+            total: subtotal + delivery,
+            date: new Date().toISOString(),
+            paymentMethod: document.getElementById("payment").value
+        };
+
+        sessionStorage.setItem(
+            "reviveLastOrder",
+            JSON.stringify(order)
+        );
+
+        localStorage.removeItem("reviveBasket");
+
+        window.location.href = "confirmation.html";
+    }
+);
+
+renderCheckout();
+</script>
+
+</body>
+</html>
