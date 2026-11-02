@@ -3,77 +3,211 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Order Confirmation | Revive Beauty Co.</title>
+<title>Engraving Studio | Revive Beauty Co.</title>
 
 <style>
+:root {
+    --pink: #f8dce6;
+    --green: #c9dfc5;
+    --darkgreen: #263e32;
+    --cream: #faf8f5;
+}
+
+* { box-sizing: border-box; }
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #faf8f5;
     color: #222;
+    background: white;
+}
+
+.announcement {
+    background: var(--pink);
+    text-align: center;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 header {
-    background: #f8dce6;
-    padding: 25px;
     text-align: center;
+    padding: 25px;
+    border-bottom: 1px solid #eee;
 }
 
 .logo {
     font-family: Georgia, serif;
     font-size: 30px;
-    color: #263e32;
+    color: var(--darkgreen);
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+nav a {
+    text-decoration: none;
+    color: #222;
+    font-size: 13px;
+    font-weight: bold;
 }
 
 main {
-    max-width: 700px;
-    margin: 60px auto;
-    padding: 40px;
-    background: white;
-    text-align: center;
-    border: 1px solid #eee;
+    max-width: 1200px;
+    margin: 55px auto;
+    padding: 0 20px;
 }
 
 h1, h2 {
     font-family: Georgia, serif;
-    color: #263e32;
+    color: var(--darkgreen);
 }
 
-.success {
-    font-size: 60px;
+h1 {
+    text-align: center;
+    font-size: 42px;
 }
 
-.order-details {
-    background: #c9dfc5;
-    padding: 25px;
-    margin: 30px 0;
-    text-align: left;
+.intro {
+    text-align: center;
+    color: #666;
+    margin-bottom: 45px;
 }
 
-.order-item {
-    border-bottom: 1px solid #aac5a7;
-    padding: 12px 0;
+.studio {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: center;
 }
 
-.btn {
-    display: inline-block;
-    padding: 15px 30px;
-    background: #263e32;
+.preview-area {
+    background: linear-gradient(135deg, var(--pink), var(--green));
+    padding: 55px 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.lipstick-case {
+    position: relative;
+    width: 125px;
+    height: 300px;
+    margin: 20px auto;
+    border-radius: 12px;
+    background: linear-gradient(
+        90deg,
+        #263e32,
+        #456653,
+        #263e32
+    );
+    box-shadow: 15px 15px 25px rgba(0,0,0,0.2);
+}
+
+.case-top {
+    height: 55%;
+    border-bottom: 5px solid #d6b86a;
+}
+
+.engraving-preview {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #e8d49c;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    width: 110px;
+    overflow-wrap: anywhere;
+    text-align: center;
+}
+
+.preview-label {
+    font-size: 12px;
+    color: #444;
+}
+
+.customisation {
+    background: var(--cream);
+    padding: 35px;
+    border: 1px solid #eee;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    font-size: 13px;
+    margin: 20px 0 8px;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    font: inherit;
+}
+
+.price-box {
+    background: var(--pink);
+    padding: 20px;
+    margin-top: 25px;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 12px 0;
+}
+
+.total {
+    border-top: 1px solid #d4b7c1;
+    padding-top: 15px;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+button {
+    width: 100%;
+    padding: 16px;
+    background: var(--darkgreen);
     color: white;
-    text-decoration: none;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
     margin-top: 20px;
 }
 
-footer {
-    text-align: center;
-    padding: 30px;
-    font-size: 13px;
+button:hover {
+    background: #456653;
 }
 
-@media(max-width: 600px) {
-    main {
-        margin: 20px;
-        padding: 25px;
+.note {
+    font-size: 12px;
+    color: #666;
+}
+
+footer {
+    background: var(--darkgreen);
+    color: white;
+    text-align: center;
+    padding: 35px;
+    margin-top: 70px;
+}
+
+@media(max-width: 768px) {
+    .studio {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 32px;
     }
 }
 </style>
@@ -81,89 +215,165 @@ footer {
 
 <body>
 
+<div class="announcement">
+    YOUR LIPS. YOUR SHADE. YOUR REVIVAL. 💗
+</div>
+
 <header>
     <div class="logo">REVIVE BEAUTY CO.</div>
-    <p>Your Lips. Your Shade. Your Revival.</p>
+    <p>Beauty, Reimagined.</p>
 </header>
 
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP ALL</a>
+    <a href="lipstick-try-on.html">VIRTUAL TRY-ON</a>
+    <a href="engraving.html">ENGRAVING</a>
+    <a href="basket.html">BAG 🛍️ <span id="bag-count">0</span></a>
+</nav>
+
 <main>
-    <div class="success">💗</div>
 
-    <h1>THANK YOU FOR YOUR ORDER!</h1>
+    <h1>THE ENGRAVING STUDIO</h1>
 
-    <p>Your Revive Beauty Co. demonstration order is complete.</p>
-
-    <p>
-        This was a simulated purchase.
-        No real payment has been taken and no products will be delivered.
+    <p class="intro">
+        Make your lipstick uniquely yours.
+        Personalise your Revive lipstick case for just £5.
     </p>
 
-    <div id="order-details" class="order-details"></div>
+    <div class="studio">
 
-    <a href="shop.html" class="btn">CONTINUE SHOPPING</a>
-    <a href="index.html" class="btn">BACK TO HOME</a>
+        <div class="preview-area">
+            <h2>YOUR PERSONALISED LIPSTICK</h2>
+
+            <div class="lipstick-case">
+                <div class="case-top"></div>
+                <div class="engraving-preview" id="preview-text">
+                    YOUR NAME
+                </div>
+            </div>
+
+            <p class="preview-label">
+                Virtual engraving preview — for illustration purposes.
+            </p>
+        </div>
+
+        <div class="customisation">
+            <h2>PERSONALISE YOUR LIPSTICK</h2>
+
+            <label for="shade">Choose your lipstick shade</label>
+            <select id="shade">
+                <option>Bare Bloom</option>
+                <option>Rose Revival</option>
+                <option>Petal Kiss</option>
+                <option>Velvet Red</option>
+                <option>Berry Bliss</option>
+            </select>
+
+            <label for="engraving">Your engraving</label>
+            <input
+                type="text"
+                id="engraving"
+                maxlength="20"
+                placeholder="Enter name or initials"
+            >
+
+            <p class="note">
+                Maximum 20 characters. Your text will appear
+                on the virtual lipstick case.
+            </p>
+
+            <div class="price-box">
+                <div class="price-row">
+                    <span>Revive Lipstick</span>
+                    <span>£19.00</span>
+                </div>
+
+                <div class="price-row">
+                    <span>Personalised engraving</span>
+                    <span id="engraving-cost">£0.00</span>
+                </div>
+
+                <div class="price-row total">
+                    <span>Total</span>
+                    <span id="total-price">£19.00</span>
+                </div>
+            </div>
+
+            <button id="add-to-bag">ADD TO BAG</button>
+
+            <p class="note">
+                Engraving costs an additional £5 when selected.
+            </p>
+        </div>
+
+    </div>
 </main>
 
 <footer>
-    © 2026 Revive Beauty Co. | University Demonstration Website
+    <h2 style="color:white;">REVIVE BEAUTY CO.</h2>
+    <p>Your Lips. Your Shade. Your Revival.</p>
+    <p>© 2026 Revive Beauty Co. | University Demonstration Website</p>
 </footer>
 
 <script>
-function money(value) {
-    return "£" + Number(value).toFixed(2);
+const engravingInput = document.getElementById("engraving");
+const previewText = document.getElementById("preview-text");
+const engravingCost = document.getElementById("engraving-cost");
+const totalPrice = document.getElementById("total-price");
+
+function getBasket() {
+    try {
+        const data = JSON.parse(localStorage.getItem("reviveBasket"));
+        return Array.isArray(data) ? data : [];
+    } catch {
+        return [];
+    }
 }
 
-function showConfirmation() {
-    const container = document.getElementById("order-details");
-    const savedOrder = sessionStorage.getItem("reviveLastOrder");
+function updateBagCount() {
+    const count = getBasket().reduce(
+        (total, item) => total + (Number(item.quantity) || 1), 0
+    );
 
-    if (!savedOrder) {
-        container.textContent =
-            "No demonstration order found in this browser session.";
-        return;
-    }
+    document.getElementById("bag-count").textContent = count;
+}
 
-    let order;
+function updatePreview() {
+    const engraving = engravingInput.value.trim();
 
-    try {
-        order = JSON.parse(savedOrder);
-    } catch {
-        container.textContent = "Unable to display order details.";
-        return;
-    }
+    previewText.textContent = engraving || "YOUR NAME";
+    engravingCost.textContent = engraving ? "£5.00" : "£0.00";
+    totalPrice.textContent = engraving ? "£24.00" : "£19.00";
+}
 
-    const heading = document.createElement("h2");
-    heading.textContent = "Order " + order.reference;
-    container.appendChild(heading);
+engravingInput.addEventListener("input", updatePreview);
 
-    order.items.forEach(item => {
-        const row = document.createElement("div");
-        row.className = "order-item";
+document.getElementById("add-to-bag").addEventListener("click", function() {
+    const engraving = engravingInput.value.trim();
+    const shade = document.getElementById("shade").value;
+    const price = engraving ? 24 : 19;
 
-        const name = document.createElement("strong");
-        name.textContent =
-            item.name + " × " + item.quantity;
+    const basket = getBasket();
 
-        const details = document.createElement("p");
-        details.textContent =
-            (item.shade ? "Shade: " + item.shade : "") +
-            (item.engraving ? " | Engraving: " + item.engraving : "");
-
-        const price = document.createElement("p");
-        price.textContent = money(
-            Number(item.price) * Number(item.quantity)
-        );
-
-        row.append(name, details, price);
-        container.appendChild(row);
+    basket.push({
+        id: Date.now() + "-" + Math.random().toString(36).slice(2),
+        name: "Revive Lipstick",
+        price: price,
+        shade: shade,
+        engraving: engraving,
+        quantity: 1
     });
 
-    const total = document.createElement("h2");
-    total.textContent = "Total: " + money(order.total);
-    container.appendChild(total);
-}
+    localStorage.setItem("reviveBasket", JSON.stringify(basket));
 
-showConfirmation();
+    updateBagCount();
+
+    alert("Your personalised lipstick has been added to your bag!");
+});
+
+updatePreview();
+updateBagCount();
 </script>
 
 </body>
