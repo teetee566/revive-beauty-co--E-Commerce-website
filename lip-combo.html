@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Build Your Lip Combo | Revive Beauty Co.</title>
+
+<style>
+:root {
+    --pink: #f8dce6;
+    --green: #c9dfc5;
+    --darkgreen: #263e32;
+    --cream: #faf8f5;
+    --rose: #a65373;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: white;
+    color: #242424;
+}
+
+.announcement {
+    background: var(--pink);
+    text-align: center;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+header {
+    text-align: center;
+    padding: 28px 15px;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: var(--darkgreen);
+}
+
+header p {
+    color: #777;
+    font-size: 13px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+nav a {
+    color: #222;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--rose);
+}
+
+main {
+    max-width: 1150px;
+    margin: 55px auto;
+    padding: 0 20px;
+}
+
+.eyebrow {
+    text-align: center;
+    color: var(--rose);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+h1, h2, h3 {
+    font-family: Georgia, serif;
+    color: var(--darkgreen);
+}
+
+h1 {
+    font-size: 43px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.intro {
+    text-align: center;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 45px;
+}
+
+.builder {
+    display: grid;
+    grid-template-columns: 1.4fr 0.85fr;
+    gap: 35px;
+    align-items: start;
+}
+
+.builder-panel {
+    border: 1px solid #eee;
+    padding: 30px;
+}
+
+.step {
+    padding: 25px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.step:last-child {
+    border-bottom: none;
+}
+
+.step-number {
+    display: inline-block;
+    background: var(--pink);
+    padding: 9px 13px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 30px;
+}
+
+.step h2 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.step-description {
+    color: #777;
+    font-size: 13px;
+}
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 13px;
+    margin-top: 22px;
+}
+
+.option {
+    border: 2px solid #eee;
+    background: white;
+    padding: 15px 8px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 6px;
+    min-height: 115px;
+}
+
+.option:hover {
+    border-color: var(--green);
+}
+
+.option.selected {
+    border-color: var(--darkgreen);
+    background: #f3f8f2;
+}
+
+.swatch {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    margin: 0 auto 12px;
+    border: 1px solid #ddd;
+}
+
+.option-name {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.summary {
+    background: var(--cream);
+    padding: 28px;
+    border: 1px solid #eee;
+    position: sticky;
+    top: 20px;
+}
+
+.summary h2 {
+    font-size: 27px;
+    margin-top: 0;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 17px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 13px;
+}
+
+.summary-item strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.summary-item span {
+    color: #666;
+}
+
+.price-box {
+    background: var(--pink);
+    padding: 20px;
+    margin-top: 25px;
+    text-align: center;
+}
+
+.old-price {
+    color: #777;
+    text-decoration: line-through;
+}
+
+.combo-price {
+    font-family: Georgia, serif;
+    font-size: 38px;
+    font-weight: bold;
+    color: var(--darkgreen);
+    margin: 10px 0;
+}
+
+.saving {
+    color: #7c3452;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.progress-label {
+    margin-top: 25px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.progress-track {
+    width: 100%;
+    height: 9px;
+    background: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 12px;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--darkgreen);
+    transition: width 0.3s;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 17px;
+    margin-top: 25px;
+    background: var(--darkgreen);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.add-btn:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}
+
+.message {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 15px;
+    color: var(--darkgreen);
+    font-weight: bold;
+    min-height: 20px;
+}
+
+footer {
+    background: var(--darkgreen);
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+    margin-top: 70px;
+}
+
+footer h2 {
+    color: white;
+}
+
+@media (max-width: 800px) {
+    .builder {
+        grid-template-columns: 1fr;
+    }
+
+    .summary {
+        position: static;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 420px) {
+    .options {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .builder-panel,
+    .summary {
+        padding: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+    YOUR PERFECT LIP COMBO, YOUR WAY — SAVE £5 💗
+</div>
+
+<header>
+    <div class="logo">REVIVE BEAUTY CO.</div>
+    <p>Beauty, Reimagined.</p>
+</header>
+
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP ALL</a>
+    <a href="lip-combo.html">LIP COMBOS</a>
+    <a href="lipstick-try-on.html">VIRTUAL TRY-ON</a>
+    <a href="engraving.html">ENGRAVING</a>
+    <a href="basket.html">BAG 🛍️ <span id="bag-count">0</span></a>
+</nav>
+
+<main>
+
+<p class="eyebrow">THE REVIVE BEAUTY EXPERIENCE</p>
+
+<h1>BUILD YOUR PERFECT LIP COMBO</h1>
+
+<p class="intro">
+    Three essentials. Endless possibilities.<br>
+    Mix, match and create a lip combination that's uniquely yours.
+</p>
+
+<div class="builder">
+
+    <section class="builder-panel">
+
+        <div class="step">
+            <span class="step-number">STEP 01</span>
+            <h2>Choose Your Lipstick 💋</h2>
+            <p class="step-description">
+                Start with your signature lipstick shade.
+            </p>
+
+            <div class="options" id="lipstick-options"></div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">STEP 02</span>
+            <h2>Choose Your Lip Liner ✏️</h2>
+            <p class="step-description">
+                Define and enhance your natural lip shape.
+            </p>
+
+            <div class="options" id="liner-options"></div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">STEP 03</span>
+            <h2>Choose Your Lip Gloss ✨</h2>
+            <p class="step-description">
+                Finish your look with the perfect shine.
+            </p>
+
+            <div class="options" id="gloss-options"></div>
+        </div>
+
+    </section>
+
+    <aside class="summary">
+
+        <h2>YOUR LIP COMBO</h2>
+
+        <p style="color:#777;font-size:13px;">
+            Your personalised beauty essentials.
+        </p>
+
+        <div class="summary-item">
+            <div>
+                <strong>💋 Lipstick</strong>
+                <span id="lipstick-choice">Not selected</span>
+            </div>
+            <strong>£19</strong>
+        </div>
+
+        <div class="summary-item">
+            <div>
+                <strong>✏️ Lip Liner</strong>
+                <span id="liner-choice">Not selected</span>
+            </div>
+            <strong>£10</strong>
+        </div>
+
+        <div class="summary-item">
+            <div>
+                <strong>✨ Lip Gloss</strong>
+                <span id="gloss-choice">Not selected</span>
+            </div>
+            <strong>£16</strong>
+        </div>
+
+        <div class="price-box">
+            <div>
+                Regular price:
+                <span class="old-price">£45.00</span>
+            </div>
+
+            <div class="combo-price">£40.00</div>
+
+            <div class="saving">YOU SAVE £5!</div>
+        </div>
+
+        <p class="progress-label">
+            Your combo is <span id="progress-text">0/3</span> complete
+        </p>
+
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <button class="add-btn" id="add-combo" disabled>
+            SELECT ALL 3 PRODUCTS
+        </button>
+
+        <p class="message" id="message" role="status"></p>
+
+    </aside>
+
+</div>
+
+</main>
+
+<footer>
+    <h2>REVIVE BEAUTY CO.</h2>
+    <p>Your Lips. Your Shade. Your Revival.</p>
+    <p>© 2026 Revive Beauty Co. | University Demonstration Website</p>
+</footer>
+
+<script>
+const products = {
+    lipstick: [
+        {name: "Bare Bloom", color: "#B77B70"},
+        {name: "Rose Revival", color: "#A94F64"},
+        {name: "Petal Kiss", color: "#E58A9B"},
+        {name: "Velvet Red", color: "#B71C36"},
+        {name: "Berry Bliss", color: "#69243F"}
+    ],
+
+    liner: [
+        {name: "Soft Nude", color: "#98665C"},
+        {name: "Rosewood", color: "#915064"},
+        {name: "Deep Berry", color: "#572638"}
+    ],
+
+    gloss: [
+        {name: "Crystal Clear", color: "#F8F2F0"},
+        {name: "Rose Glow", color: "#D98CA3"}
+    ]
+};
+
+const selections = {
+    lipstick: null,
+    liner: null,
+    gloss: null
+};
+
+function getBasket() {
+    try {
+        const basket = JSON.parse(
+            localStorage.getItem("reviveBasket")
+        );
+
+        return Array.isArray(basket) ? basket : [];
+    } catch {
+        return [];
+    }
+}
+
+function updateBagCount() {
+    const count = getBasket().reduce(
+        (total, item) => total + (Number(item.quantity) || 1),
+        0
+    );
+
+    document.getElementById("bag-count").textContent = count;
+}
+
+function createOptions(type) {
+    const container = document.getElementById(type + "-options");
+
+    products[type].forEach(product => {
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "option";
+        button.setAttribute("aria-pressed", "false");
+
+        const swatch = document.createElement("div");
+        swatch.className = "swatch";
+        swatch.style.backgroundColor = product.color;
+
+        const name = document.createElement("span");
+        name.className = "option-name";
+        name.textContent = product.name;
+
+        button.appendChild(swatch);
+        button.appendChild(name);
+
+        button.addEventListener("click", () => {
+            selections[type] = product.name;
+
+            container.querySelectorAll(".option").forEach(option => {
+                option.classList.remove("selected");
+                option.setAttribute("aria-pressed", "false");
+            });
+
+            button.classList.add("selected");
+            button.setAttribute("aria-pressed", "true");
+
+            updateSummary();
+        });
+
+        container.appendChild(button);
+    });
+}
+
+function updateSummary() {
+    document.getElementById("lipstick-choice").textContent =
+        selections.lipstick || "Not selected";
+
+    document.getElementById("liner-choice").textContent =
+        selections.liner || "Not selected";
+
+    document.getElementById("gloss-choice").textContent =
+        selections.gloss || "Not selected";
+
+    const completed = Object.values(selections).filter(Boolean).length;
+
+    document.getElementById("progress-text").textContent =
+        completed + "/3";
+
+    document.getElementById("progress-fill").style.width =
+        (completed / 3 * 100) + "%";
+
+    const button = document.getElementById("add-combo");
+
+    button.disabled = completed !== 3;
+
+    button.textContent =
+        completed === 3
+            ? "ADD MY LIP COMBO — £40"
+            : "SELECT ALL 3 PRODUCTS";
+
+    document.getElementById("message").textContent = "";
+}
+
+document.getElementById("add-combo").addEventListener(
+    "click",
+    function() {
+        if (!selections.lipstick ||
+            !selections.liner ||
+            !selections.gloss) {
+            return;
+        }
+
+        const basket = getBasket();
+
+        basket.push({
+            id: Date.now() + "-" +
+                Math.random().toString(36).slice(2),
+            name: "Build Your Own Lip Combo",
+            price: 40,
+            shade:
+                "Lipstick: " + selections.lipstick +
+                " | Liner: " + selections.liner +
+                " | Gloss: " + selections.gloss,
+            engraving: "",
+            quantity: 1
+        });
+
+        localStorage.setItem(
+            "reviveBasket",
+            JSON.stringify(basket)
+        );
+
+        updateBagCount();
+
+        document.getElementById("message").textContent =
+            "Your personalised lip combo has been added to your bag! 💗";
+
+        this.textContent = "ADDED TO BAG ✓";
+    }
+);
+
+createOptions("lipstick");
+createOptions("liner");
+createOptions("gloss");
+
+updateSummary();
+updateBagCount();
+</script>
+
+</body>
+</html>
