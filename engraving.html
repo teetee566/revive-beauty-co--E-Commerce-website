@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmation | Revive Beauty Co.</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #faf8f5;
+    color: #222;
+}
+
+header {
+    background: #f8dce6;
+    padding: 25px;
+    text-align: center;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    color: #263e32;
+}
+
+main {
+    max-width: 700px;
+    margin: 60px auto;
+    padding: 40px;
+    background: white;
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+h1, h2 {
+    font-family: Georgia, serif;
+    color: #263e32;
+}
+
+.success {
+    font-size: 60px;
+}
+
+.order-details {
+    background: #c9dfc5;
+    padding: 25px;
+    margin: 30px 0;
+    text-align: left;
+}
+
+.order-item {
+    border-bottom: 1px solid #aac5a7;
+    padding: 12px 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 30px;
+    background: #263e32;
+    color: white;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 13px;
+}
+
+@media(max-width: 600px) {
+    main {
+        margin: 20px;
+        padding: 25px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">REVIVE BEAUTY CO.</div>
+    <p>Your Lips. Your Shade. Your Revival.</p>
+</header>
+
+<main>
+    <div class="success">💗</div>
+
+    <h1>THANK YOU FOR YOUR ORDER!</h1>
+
+    <p>Your Revive Beauty Co. demonstration order is complete.</p>
+
+    <p>
+        This was a simulated purchase.
+        No real payment has been taken and no products will be delivered.
+    </p>
+
+    <div id="order-details" class="order-details"></div>
+
+    <a href="shop.html" class="btn">CONTINUE SHOPPING</a>
+    <a href="index.html" class="btn">BACK TO HOME</a>
+</main>
+
+<footer>
+    © 2026 Revive Beauty Co. | University Demonstration Website
+</footer>
+
+<script>
+function money(value) {
+    return "£" + Number(value).toFixed(2);
+}
+
+function showConfirmation() {
+    const container = document.getElementById("order-details");
+    const savedOrder = sessionStorage.getItem("reviveLastOrder");
+
+    if (!savedOrder) {
+        container.textContent =
+            "No demonstration order found in this browser session.";
+        return;
+    }
+
+    let order;
+
+    try {
+        order = JSON.parse(savedOrder);
+    } catch {
+        container.textContent = "Unable to display order details.";
+        return;
+    }
+
+    const heading = document.createElement("h2");
+    heading.textContent = "Order " + order.reference;
+    container.appendChild(heading);
+
+    order.items.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "order-item";
+
+        const name = document.createElement("strong");
+        name.textContent =
+            item.name + " × " + item.quantity;
+
+        const details = document.createElement("p");
+        details.textContent =
+            (item.shade ? "Shade: " + item.shade : "") +
+            (item.engraving ? " | Engraving: " + item.engraving : "");
+
+        const price = document.createElement("p");
+        price.textContent = money(
+            Number(item.price) * Number(item.quantity)
+        );
+
+        row.append(name, details, price);
+        container.appendChild(row);
+    });
+
+    const total = document.createElement("h2");
+    total.textContent = "Total: " + money(order.total);
+    container.appendChild(total);
+}
+
+showConfirmation();
+</script>
+
+</body>
+</html>
