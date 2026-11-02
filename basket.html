@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Bag | Revive Beauty Co.</title>
+
+<style>
+:root {
+    --pink: #f8dce6;
+    --green: #c9dfc5;
+    --darkgreen: #263e32;
+    --cream: #faf8f5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #222;
+    background: white;
+}
+
+.announcement {
+    background: var(--pink);
+    text-align: center;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+header {
+    text-align: center;
+    padding: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 30px;
+    color: var(--darkgreen);
+    letter-spacing: 2px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+nav a {
+    text-decoration: none;
+    color: #222;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #b66b88;
+}
+
+main {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 20px;
+    min-height: 400px;
+}
+
+h1, h2 {
+    font-family: Georgia, serif;
+    color: var(--darkgreen);
+}
+
+h1 {
+    font-size: 42px;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.basket-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    padding: 25px;
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    background: var(--cream);
+}
+
+.item-details h2 {
+    margin-top: 0;
+    font-size: 23px;
+}
+
+.item-details p {
+    margin: 8px 0;
+}
+
+.item-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 12px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+button, .btn {
+    background: var(--darkgreen);
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+button:hover, .btn:hover {
+    background: #456653;
+}
+
+.quantity-controls button {
+    padding: 8px 13px;
+}
+
+.remove-btn {
+    background: #a65373;
+}
+
+.remove-btn:hover {
+    background: #87425c;
+}
+
+.summary {
+    margin-top: 35px;
+    margin-left: auto;
+    max-width: 400px;
+    padding: 30px;
+    background: var(--pink);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+}
+
+.summary-total {
+    border-top: 1px solid #c9aeba;
+    padding-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.checkout-btn {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.empty-basket {
+    text-align: center;
+    padding: 70px 20px;
+    background: var(--cream);
+}
+
+.empty-basket p {
+    margin-bottom: 30px;
+}
+
+footer {
+    background: var(--darkgreen);
+    color: white;
+    text-align: center;
+    padding: 35px;
+}
+
+@media (max-width: 600px) {
+    .basket-item {
+        grid-template-columns: 1fr;
+    }
+
+    .item-actions {
+        align-items: flex-start;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+    YOUR LIPS. YOUR SHADE. YOUR REVIVAL. 💗
+</div>
+
+<header>
+    <div class="logo">REVIVE BEAUTY CO.</div>
+    <p>Beauty, Reimagined.</p>
+</header>
+
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP ALL</a>
+    <a href="lipsticks.html">LIPSTICKS</a>
+    <a href="lip-gloss.html">LIP GLOSS</a>
+    <a href="lip-liners.html">LIP LINERS</a>
+    <a href="lip-combo.html">LIP COMBOS</a>
+    <a href="refills.html">REFILLS</a>
+    <a href="lipstick-try-on.html">VIRTUAL TRY-ON</a>
+    <a href="engraving.html">ENGRAVING</a>
+    <a href="basket.html">BAG 🛍️ <span id="bag-count">0</span></a>
+</nav>
+
+<main>
+    <h1>YOUR SHOPPING BAG</h1>
+
+    <div id="basket-items"></div>
+
+    <div id="basket-summary"></div>
+</main>
+
+<footer>
+    <h2 style="color:white;">REVIVE BEAUTY CO.</h2>
+    <p>Your Lips. Your Shade. Your Revival.</p>
+    <p>© 2026 Revive Beauty Co. | University Demonstration Website</p>
+</footer>
+
+<script>
+function getBasket() {
+    try {
+        const data = JSON.parse(localStorage.getItem("reviveBasket"));
+        return Array.isArray(data) ? data : [];
+    } catch {
+        return [];
+    }
+}
+
+function saveBasket(basket) {
+    localStorage.setItem("reviveBasket", JSON.stringify(basket));
+    renderBasket();
+}
+
+function money(amount) {
+    return "£" + amount.toFixed(2);
+}
+
+function updateBagCount(basket) {
+    const count = basket.reduce(
+        (total, item) => total + (Number(item.quantity) || 1), 0
+    );
+
+    document.getElementById("bag-count").textContent = count;
+}
+
+function changeQuantity(index, change) {
+    const basket = getBasket();
+
+    if (!basket[index]) return;
+
+    basket[index].quantity =
+        Math.max(1, (Number(basket[index].quantity) || 1) + change);
+
+    saveBasket(basket);
+}
+
+function removeItem(index) {
+    const basket = getBasket();
+    basket.splice(index, 1);
+    saveBasket(basket);
+}
+
+function renderBasket() {
+    const basket = getBasket();
+    const itemsContainer = document.getElementById("basket-items");
+    const summaryContainer = document.getElementById("basket-summary");
+
+    itemsContainer.innerHTML = "";
+    summaryContainer.innerHTML = "";
+
+    updateBagCount(basket);
+
+    if (basket.length === 0) {
+        itemsContainer.innerHTML = `
+            <div class="empty-basket">
+                <h2>Your bag is empty</h2>
+                <p>Your next favourite lip product is waiting for you.</p>
+                <a href="shop.html" class="btn">CONTINUE SHOPPING</a>
+            </div>
+        `;
+        return;
+    }
+
+    let subtotal = 0;
+
+    basket.forEach((item, index) => {
+        const quantity = Math.max(1, Number(item.quantity) || 1);
+        const price = Number(item.price) || 0;
+        const lineTotal = price * quantity;
+
+        subtotal += lineTotal;
+
+        const card = document.createElement("div");
+        card.className = "basket-item";
+
+        const details = document.createElement("div");
+        details.className = "item-details";
+
+        const title = document.createElement("h2");
+        title.textContent = item.name || "Revive Product";
+        details.appendChild(title);
+
+        if (item.shade) {
+            const shade = document.createElement("p");
+            shade.textContent = "Shade: " + item.shade;
+            details.appendChild(shade);
+        }
+
+        if (item.engraving) {
+            const engraving = document.createElement("p");
+            engraving.textContent = "Engraving: " + item.engraving + " (+£5 included)";
+            details.appendChild(engraving);
+        }
+
+        const unitPrice = document.createElement("p");
+        unitPrice.textContent = "Unit price: " + money(price);
+        details.appendChild(unitPrice);
+
+        const actions = document.createElement("div");
+        actions.className = "item-actions";
+
+        const total = document.createElement("strong");
+        total.textContent = money(lineTotal);
+
+        const controls = document.createElement("div");
+        controls.className = "quantity-controls";
+
+        const minus = document.createElement("button");
+        minus.textContent = "−";
+        minus.setAttribute("aria-label", "Decrease quantity");
+        minus.onclick = () => changeQuantity(index, -1);
+
+        const quantityText = document.createElement("span");
+        quantityText.textContent = quantity;
+
+        const plus = document.createElement("button");
+        plus.textContent = "+";
+        plus.setAttribute("aria-label", "Increase quantity");
+        plus.onclick = () => changeQuantity(index, 1);
+
+        controls.append(minus, quantityText, plus);
+
+        const remove = document.createElement("button");
+        remove.className = "remove-btn";
+        remove.textContent = "REMOVE";
+        remove.onclick = () => removeItem(index);
+
+        actions.append(total, controls, remove);
+        card.append(details, actions);
+        itemsContainer.appendChild(card);
+    });
+
+    const summary = document.createElement("div");
+    summary.className = "summary";
+
+    const heading = document.createElement("h2");
+    heading.textContent = "Order Summary";
+
+    const subtotalRow = document.createElement("div");
+    subtotalRow.className = "summary-row";
+
+    const subtotalLabel = document.createElement("span");
+    subtotalLabel.textContent = "Subtotal";
+
+    const subtotalValue = document.createElement("span");
+    subtotalValue.textContent = money(subtotal);
+
+    subtotalRow.append(subtotalLabel, subtotalValue);
+
+    const deliveryRow = document.createElement("div");
+    deliveryRow.className = "summary-row";
+
+    const deliveryLabel = document.createElement("span");
+    deliveryLabel.textContent = "Delivery";
+
+    const deliveryValue = document.createElement("span");
+    deliveryValue.textContent = "Calculated at checkout";
+
+    deliveryRow.append(deliveryLabel, deliveryValue);
+
+    const totalRow = document.createElement("div");
+    totalRow.className = "summary-row summary-total";
+
+    const totalLabel = document.createElement("span");
+    totalLabel.textContent = "Subtotal";
+
+    const totalValue = document.createElement("span");
+    totalValue.textContent = money(subtotal);
+
+    totalRow.append(totalLabel, totalValue);
+
+    const checkout = document.createElement("a");
+    checkout.href = "checkout.html";
+    checkout.className = "btn checkout-btn";
+    checkout.textContent = "PROCEED TO CHECKOUT";
+
+    summary.append(
+        heading,
+        subtotalRow,
+        deliveryRow,
+        totalRow,
+        checkout
+    );
+
+    summaryContainer.appendChild(summary);
+}
+
+renderBasket();
+</script>
+
+</body>
+</html>
