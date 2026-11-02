@@ -1,1 +1,303 @@
-Create Revive Beauty Co homepage
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revive Beauty Co. | Your Lips, Your Revival</title>
+
+    <style>
+        :root {
+            --pink: #f8dce6;
+            --green: #c9dfc5;
+            --darkgreen: #263e32;
+            --cream: #faf8f5;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #222;
+            background: white;
+        }
+
+        .announcement {
+            background: var(--pink);
+            text-align: center;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        header {
+            padding: 25px 6%;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-family: Georgia, serif;
+            font-size: 32px;
+            color: var(--darkgreen);
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #222;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #b66b88;
+        }
+
+        .hero {
+            background: linear-gradient(120deg, #f8dce6, #c9dfc5);
+            padding: 110px 8%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: Georgia, serif;
+            font-size: clamp(34px, 5vw, 58px);
+            color: var(--darkgreen);
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 35px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--darkgreen);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            margin: 5px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #456653;
+        }
+
+        .section {
+            padding: 65px 6%;
+            text-align: center;
+        }
+
+        .section h2 {
+            font-family: Georgia, serif;
+            font-size: 35px;
+            color: var(--darkgreen);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .product-card {
+            background: var(--cream);
+            padding: 35px 20px;
+            border: 1px solid #eee;
+        }
+
+        .product-image {
+            height: 190px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f4e6e9;
+            font-size: 75px;
+            margin-bottom: 20px;
+        }
+
+        .product-card h3 {
+            font-family: Georgia, serif;
+            font-size: 22px;
+        }
+
+        .price {
+            color: #a65373;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .feature {
+            background: var(--pink);
+            padding: 75px 8%;
+            text-align: center;
+        }
+
+        .feature.green {
+            background: var(--green);
+        }
+
+        .feature h2 {
+            font-family: Georgia, serif;
+            font-size: 36px;
+            color: var(--darkgreen);
+        }
+
+        footer {
+            background: var(--darkgreen);
+            color: white;
+            padding: 45px 6%;
+            text-align: center;
+        }
+
+        @media(max-width: 768px) {
+            nav {
+                gap: 15px;
+            }
+
+            .hero {
+                padding: 70px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="announcement">
+        YOUR LIPS. YOUR SHADE. YOUR REVIVAL. 💗
+    </div>
+
+    <header>
+        <div class="logo">REVIVE BEAUTY CO.</div>
+        <p>Beauty, Reimagined.</p>
+    </header>
+
+    <nav>
+        <a href="index.html">HOME</a>
+        <a href="shop.html">SHOP ALL</a>
+        <a href="lipsticks.html">LIPSTICKS</a>
+        <a href="lip-gloss.html">LIP GLOSS</a>
+        <a href="lip-liners.html">LIP LINERS</a>
+        <a href="lip-combo.html">LIP COMBOS</a>
+        <a href="refills.html">REFILLS</a>
+        <a href="lipstick-try-on.html">VIRTUAL TRY-ON</a>
+        <a href="engraving.html">ENGRAVING</a>
+        <a href="basket.html">BAG 🛍️</a>
+    </nav>
+
+    <section class="hero">
+        <h1>YOUR LIPS.<br>YOUR SHADE.<br>YOUR REVIVAL.</h1>
+
+        <p>
+            Discover personalised lip essentials designed
+            to enhance your natural beauty.
+        </p>
+
+        <a href="shop.html" class="btn">SHOP THE COLLECTION</a>
+        <a href="lipstick-try-on.html" class="btn">VIRTUAL TRY-ON</a>
+    </section>
+
+    <section class="section">
+        <h2>THE REVIVE COLLECTION</h2>
+        <p>Discover your new everyday lip essentials.</p>
+
+        <div class="product-grid">
+
+            <div class="product-card">
+                <div class="product-image">💄</div>
+                <h3>Revive Lipstick</h3>
+                <p>Five beautiful shades in a refillable case.</p>
+                <p class="price">£19</p>
+                <a href="lipsticks.html" class="btn">SHOP NOW</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">✏️</div>
+                <h3>Revive Lip Liner</h3>
+                <p>Define and enhance your natural lip shape.</p>
+                <p class="price">£10</p>
+                <a href="lip-liners.html" class="btn">SHOP NOW</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">✨</div>
+                <h3>Revive Lip Gloss</h3>
+                <p>High-shine gloss for the perfect finishing touch.</p>
+                <p class="price">£16</p>
+                <a href="lip-gloss.html" class="btn">SHOP NOW</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">🎀</div>
+                <h3>Build Your Own Lip Combo</h3>
+                <p>Choose your favourite lipstick, liner and gloss.</p>
+                <p class="price">£40</p>
+                <a href="lip-combo.html" class="btn">BUILD YOUR COMBO</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="feature">
+        <h2>MAKE IT PERSONAL ✨</h2>
+
+        <p>
+            Your lipstick. Your signature.
+            Add a personalised engraving for just £5.
+        </p>
+
+        <a href="engraving.html" class="btn">
+            PERSONALISE YOUR LIPSTICK
+        </a>
+    </section>
+
+    <section class="feature green">
+        <h2>TRY BEFORE YOU BUY 💋</h2>
+
+        <p>
+            Discover your perfect lipstick shade
+            with our interactive virtual lip try-on.
+        </p>
+
+        <a href="lipstick-try-on.html" class="btn">
+            TRY ON SHADES
+        </a>
+    </section>
+
+    <section class="section">
+        <h2>MEET YOUR BEAUTY ASSISTANT 🤖</h2>
+
+        <p>
+            Need help choosing a shade?
+            Our virtual beauty assistant is here to help.
+        </p>
+
+        <a href="beauty-chat.html" class="btn">
+            CHAT WITH REVIVE
+        </a>
+    </section>
+
+    <footer>
+        <h2>REVIVE BEAUTY CO.</h2>
+        <p>Your Lips. Your Shade. Your Revival.</p>
+        <p>© 2026 Revive Beauty Co. | University Demonstration Website</p>
+    </footer>
+
+</body>
+</html>
