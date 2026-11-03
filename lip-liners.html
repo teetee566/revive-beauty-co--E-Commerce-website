@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lip Liners | Revive Beauty Co.</title>
+
+<style>
+:root {
+    --sage: #c9dfc5;
+    --dark: #263e32;
+    --pink: #f8dce6;
+    --cream: #faf8f5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--dark);
+}
+
+.announcement {
+    background: var(--pink);
+    text-align: center;
+    padding: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+header {
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+header p {
+    color: #777;
+    font-size: 13px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+nav a {
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.hero {
+    background: var(--cream);
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: 43px;
+}
+
+.hero p {
+    color: #666;
+    line-height: 1.7;
+}
+
+.collection {
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.collection h2 {
+    text-align: center;
+    font-family: Georgia, serif;
+    font-size: 32px;
+}
+
+.intro {
+    text-align: center;
+    color: #777;
+    margin-bottom: 40px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.product-card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 23px;
+    text-align: center;
+}
+
+.product-visual {
+    background: #f8f2ef;
+    padding: 30px 15px;
+    border-radius: 10px;
+}
+
+.liner-pencil {
+    width: 38px;
+    margin: 0 auto;
+    filter: drop-shadow(7px 8px 5px rgba(0,0,0,.12));
+}
+
+.liner-tip {
+    height: 55px;
+    background: var(--shade);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.liner-body {
+    height: 220px;
+    background: linear-gradient(
+        90deg,
+        #a9bda5,
+        #d1dfca,
+        #a9bda5
+    );
+    border-radius: 2px;
+    position: relative;
+}
+
+.liner-brand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    white-space: nowrap;
+    font-family: Georgia, serif;
+    font-size: 15px;
+    color: #111;
+}
+
+.liner-end {
+    height: 35px;
+    background: #171717;
+    border-radius: 0 0 5px 5px;
+}
+
+.product-card h3 {
+    font-family: Georgia, serif;
+    font-size: 24px;
+}
+
+.product-card p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.swatch {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    margin: 18px auto;
+}
+
+.price {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--dark);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-btn:hover {
+    background: #a65373;
+}
+
+.feedback {
+    min-height: 20px;
+    font-size: 13px;
+    color: var(--dark);
+    font-weight: bold;
+}
+
+.selector-section {
+    background: var(--pink);
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.selector-section h2 {
+    font-family: Georgia, serif;
+    font-size: 30px;
+}
+
+.selector-section select {
+    padding: 15px;
+    width: 100%;
+    max-width: 330px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+}
+
+.selector-section button {
+    display: block;
+    margin: 15px auto;
+    padding: 16px 35px;
+    border: none;
+    background: var(--dark);
+    color: white;
+    cursor: pointer;
+}
+
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+}
+
+@media(max-width: 800px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 550px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+    THE REVIVE LIP LINER COLLECTION — £10 EACH ✏️
+</div>
+
+<header>
+    <div class="logo">REVIVE BEAUTY CO.</div>
+    <p>Beauty, Reimagined.</p>
+</header>
+
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP ALL</a>
+    <a href="lipsticks.html">LIPSTICKS</a>
+    <a href="lip-gloss.html">LIP GLOSS</a>
+    <a href="lip-liners.html">LIP LINERS</a>
+    <a href="lip-combo.html">LIP COMBOS</a>
+    <a href="refills.html">REFILLS</a>
+    <a href="lipstick-try-on.html">VIRTUAL TRY-ON</a>
+    <a href="engraving.html">ENGRAVING</a>
+    <a href="basket.html">BAG 🛍️ <span id="bag-count">0</span></a>
+</nav>
+
+<section class="hero">
+    <h1>THE SIGNATURE LIP LINER ✏️</h1>
+    <p>
+        Define. Shape. Enhance.<br>
+        Discover your perfect lip liner in our
+        signature sage-green packaging.
+    </p>
+</section>
+
+<section class="collection">
+    <h2>FIND YOUR PERFECT LINER</h2>
+    <p class="intro">
+        Three versatile shades to complement your favourite lipsticks.
+    </p>
+
+    <div class="product-grid" id="product-grid"></div>
+</section>
+
+<section class="selector-section">
+    <h2>YOUR LINER, YOUR SHADE 💋</h2>
+    <p>Select your perfect lip liner.</p>
+
+    <select id="liner-selector" aria-label="Choose lip liner">
+        <option value="0">Soft Nude</option>
+        <option value="1">Rosewood</option>
+        <option value="2">Deep Berry</option>
+    </select>
+
+    <div id="selected-preview"></div>
+
+    <p class="price">£10.00</p>
+
+    <button type="button" id="selected-add">
+        ADD TO BAG — £10
+    </button>
+
+    <p class="feedback" id="selected-feedback" role="status"></p>
+</section>
+
+<footer>
+    <h2>REVIVE BEAUTY CO.</h2>
+    <p>Your Lips. Your Shade. Your Revival.</p>
+    <p>© 2026 Revive Beauty Co. | University Demonstration Website</p>
+</footer>
+
+<script>
+const liners = [
+    {
+        name: "Soft Nude",
+        color: "#98665C",
+        description: "A versatile nude for natural definition."
+    },
+    {
+        name: "Rosewood",
+        color: "#915064",
+        description: "A rosy shade for softly sculpted lips."
+    },
+    {
+        name: "Deep Berry",
+        color: "#572638",
+        description: "A rich liner for bold, defined lips."
+    }
+];
+
+function createLinerVisual(color) {
+    const visual = document.createElement("div");
+    visual.className = "liner-pencil";
+    visual.style.setProperty("--shade", color);
+
+    visual.innerHTML = `
+        <div class="liner-tip"></div>
+        <div class="liner-body">
+            <span class="liner-brand">reVive beauty</span>
+        </div>
+        <div class="liner-end"></div>
+    `;
+
+    return visual;
+}
+
+function getBasket() {
+    try {
+        const saved = JSON.parse(
+            localStorage.getItem("reviveBasket")
+        );
+
+        return Array.isArray(saved) ? saved : [];
+    } catch {
+        return [];
+    }
+}
+
+function updateBagCount() {
+    const count = getBasket().reduce(
+        (total, item) => total + (Number(item.quantity) || 1),
+        0
+    );
+
+    document.getElementById("bag-count").textContent = count;
+}
+
+function addLiner(shade) {
+    const basket = getBasket();
+
+    basket.push({
+        id: Date.now() + "-" +
+            Math.random().toString(36).slice(2),
+        name: "Revive Lip Liner",
+        price: 10,
+        shade: shade,
+        engraving: "",
+        quantity: 1
+    });
+
+    localStorage.setItem(
+        "reviveBasket",
+        JSON.stringify(basket)
+    );
+
+    updateBagCount();
+}
+
+const grid = document.getElementById("product-grid");
+
+liners.forEach(liner => {
+    const card = document.createElement("article");
+    card.className = "product-card";
+
+    const visual = document.createElement("div");
+    visual.className = "product-visual";
+    visual.appendChild(createLinerVisual(liner.color));
+
+    const title = document.createElement("h3");
+    title.textContent = liner.name;
+
+    const description = document.createElement("p");
+    description.textContent = liner.description;
+
+    const swatch = document.createElement("div");
+    swatch.className = "swatch";
+    swatch.style.backgroundColor = liner.color;
+
+    const price = document.createElement("p");
+    price.className = "price";
+    price.textContent = "£10.00";
+
+    const button = document.createElement("button");
+    button.className = "add-btn";
+    button.type = "button";
+    button.textContent = "ADD TO BAG";
+
+    const feedback = document.createElement("p");
+    feedback.className = "feedback";
+    feedback.setAttribute("role", "status");
+
+    button.addEventListener("click", () => {
+        addLiner(liner.name);
+        feedback.textContent = liner.name + " added to bag! 💗";
+    });
+
+    card.append(
+        visual,
+        title,
+        description,
+        swatch,
+        price,
+        button,
+        feedback
+    );
+
+    grid.appendChild(card);
+});
+
+const selector = document.getElementById("liner-selector");
+const preview = document.getElementById("selected-preview");
+
+function updatePreview() {
+    const selected = liners[Number(selector.value)];
+
+    preview.replaceChildren(
+        createLinerVisual(selected.color)
+    );
+
+    document.getElementById("selected-feedback").textContent = "";
+}
+
+selector.addEventListener("change", updatePreview);
+
+document.getElementById("selected-add").addEventListener(
+    "click",
+    () => {
+        const selected = liners[Number(selector.value)];
+
+        addLiner(selected.name);
+
+        document.getElementById("selected-feedback").textContent =
+            selected.name + " added to your bag! 💗";
+    }
+);
+
+updatePreview();
+updateBagCount();
+</script>
+
+<script src="beauty-chat.js"></script>
+<script src="floating-chat.js"></script>
+
+</body>
+</html>
