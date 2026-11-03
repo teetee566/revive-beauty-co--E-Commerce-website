@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lipstick Refills | Revive Beauty Co.</title>
+
+<style>
+:root {
+    --sage: #c9dfc5;
+    --darkgreen: #263e32;
+    --pink: #f8dce6;
+    --cream: #faf8f5;
+    --rose: #a65373;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--darkgreen);
+    background: white;
+}
+
+.announcement {
+    background: var(--pink);
+    padding: 12px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+header {
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+header p {
+    color: #777;
+    font-size: 13px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+nav a {
+    color: var(--darkgreen);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: var(--rose);
+}
+
+.hero {
+    background: var(--cream);
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.eyebrow {
+    color: var(--rose);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #666;
+    line-height: 1.8;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: var(--sage);
+    padding: 12px 22px;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 13px;
+    border-radius: 30px;
+}
+
+.collection {
+    max-width: 1200px;
+    margin: 65px auto;
+    padding: 0 20px;
+}
+
+.collection h2 {
+    text-align: center;
+    font-family: Georgia, serif;
+    font-size: 34px;
+}
+
+.collection-intro {
+    text-align: center;
+    color: #777;
+    margin-bottom: 40px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.product-card {
+    border: 1px solid #eee;
+    padding: 22px;
+    text-align: center;
+    border-radius: 10px;
+    background: white;
+}
+
+.product-visual {
+    background: #f7f2ef;
+    padding: 35px 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.refill-illustration {
+    width: 70px;
+    margin: 0 auto;
+    filter: drop-shadow(7px 8px 6px rgba(0,0,0,.12));
+}
+
+.refill-bullet {
+    height: 100px;
+    background: var(--shade);
+    clip-path: polygon(
+        0 30%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+    border-radius: 20px 20px 2px 2px;
+}
+
+.refill-holder {
+    height: 100px;
+    background: linear-gradient(
+        90deg,
+        #111,
+        #383838,
+        #111
+    );
+    border-radius: 3px 3px 9px 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: Georgia, serif;
+    font-size: 11px;
+}
+
+.refill-label {
+    background: var(--sage);
+    padding: 8px 5px;
+    font-size: 9px;
+    font-weight: bold;
+    color: #111;
+}
+
+.product-card h3 {
+    font-family: Georgia, serif;
+    font-size: 24px;
+}
+
+.product-card p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.swatch {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    margin: 18px auto;
+}
+
+.old-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 14px;
+}
+
+.price {
+    font-size: 22px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.saving {
+    color: var(--rose);
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 16px;
+    margin-top: 15px;
+    background: var(--darkgreen);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-btn:hover {
+    background: var(--rose);
+}
+
+.feedback {
+    min-height: 22px;
+    font-size: 13px;
+    color: var(--darkgreen);
+    font-weight: bold;
+}
+
+.selector-section {
+    background: var(--pink);
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.selector-section h2 {
+    font-family: Georgia, serif;
+    font-size: 32px;
+}
+
+.selector-section select {
+    display: block;
+    width: 100%;
+    max-width: 350px;
+    padding: 15px;
+    margin: 25px auto;
+    border: 1px solid #ddd;
+    background: white;
+}
+
+.selected-preview {
+    margin: 25px auto;
+}
+
+.selector-section button {
+    display: block;
+    margin: 20px auto;
+    padding: 17px 35px;
+    background: var(--darkgreen);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.how-it-works {
+    max-width: 1100px;
+    margin: 70px auto;
+    padding: 0 20px;
+}
+
+.how-it-works h2 {
+    text-align: center;
+    font-family: Georgia, serif;
+    font-size: 34px;
+    margin-bottom: 40px;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.step-card {
+    background: var(--cream);
+    padding: 30px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.step-number {
+    display: inline-block;
+    background: var(--sage);
+    border-radius: 50%;
+    padding: 13px 17px;
+    font-weight: bold;
+}
+
+.step-card h3 {
+    font-family: Georgia, serif;
+    font-size: 22px;
+}
+
+.step-card p {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.calculator {
+    background: var(--sage);
+    padding: 65px 20px;
+    text-align: center;
+}
+
+.calculator h2 {
+    font-family: Georgia, serif;
+    font-size: 32px;
+}
+
+.calculator input {
+    width: 110px;
+    padding: 14px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.savings-result {
+    font-family: Georgia, serif;
+    font-size: 35px;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+.calculator p {
+    color: #555;
+    line-height: 1.7;
+}
+
+footer {
+    background: var(--darkgreen);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+@media(max-width: 850px) {
+    .product-grid,
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 550px) {
+    .product-grid,
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="announcement">
+    REFILL YOUR FAVOURITES — SAVE £6 PER LIPSTICK ♻️
+</div>
+
+<header>
+    <div class="logo">REVIVE BEAUTY CO.</div>
+    <p>Beauty, Reimagined.</p>
+</header>
+
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP ALL</a>
+    <a href="lipsticks.html">LIPSTICKS</a>
+    <a href="lip-gloss.html">LIP GLOSS</a>
+    <a href="lip-liners.html">LIP LINERS</a>
+    <a href="lip-combo.html">LIP COMBOS</a>
+    <a href="refills.html">REFILLS</a>
+    <a href="lipstick-try-on.html">VIRTUAL TRY-ON</a>
+    <a href="engraving.html">ENGRAVING</a>
+    <a href="basket.html">BAG 🛍️ <span id="bag-count">0</span></a>
+</nav>
+
+<section class="hero">
+
+    <p class="eyebrow">THE REVIVE REFILL COLLECTION</p>
+
+    <h1>REFILL. REUSE. REVIVE. ♻️</h1>
+
+    <p>
+        Your favourite lipstick deserves a second life.<br>
+        Keep your signature sage-green case and
+        refresh your shade with our lipstick refills.
+    </p>
+
+    <div class="hero-badge">
+        REFILLS £13 | SAVE £6
+    </div>
+
+</section>
+
+<section class="collection">
+
+    <h2>SHOP LIPSTICK REFILLS</h2>
+
+    <p class="collection-intro">
+        All five signature shades, now available as refills.
+    </p>
+
+    <div class="product-grid" id="product-grid"></div>
+
+</section>
+
+<section class="selector-section">
+
+    <h2>CHOOSE YOUR REFILL 💄</h2>
+
+    <p>
+        Select your shade and give your favourite
+        lipstick case a new life.
+    </p>
+
+    <select id="refill-selector" aria-label="Choose refill shade">
+        <option value="0">Bare Bloom</option>
+        <option value="1">Rose Revival</option>
+        <option value="2">Petal Kiss</option>
+        <option value="3">Velvet Red</option>
+        <option value="4">Berry Bliss</option>
+    </select>
+
+    <div class="selected-preview" id="selected-preview"></div>
+
+    <p class="old-price">Regular lipstick: £19.00</p>
+    <p class="price">Refill price: £13.00</p>
+    <p class="saving">SAVE £6!</p>
+
+    <button type="button" id="selected-add">
+        ADD REFILL TO BAG — £13
+    </button>
+
+    <p class="feedback" id="selected-feedback" role="status"></p>
+
+</section>
+
+<section class="how-it-works">
+
+    <h2>HOW DOES REFILLING WORK?</h2>
+
+    <div class="steps">
+
+        <div class="step-card">
+            <span class="step-number">01</span>
+            <h3>Keep Your Case 💚</h3>
+            <p>
+                Hold onto your original Revive Beauty Co.
+                refillable lipstick case.
+            </p>
+        </div>
+
+        <div class="step-card">
+            <span class="step-number">02</span>
+            <h3>Choose Your Refill 💋</h3>
+            <p>
+                Select your favourite shade from
+                our signature lipstick collection.
+            </p>
+        </div>
+
+        <div class="step-card">
+            <span class="step-number">03</span>
+            <h3>Refresh Your Lipstick ✨</h3>
+            <p>
+                Replace your finished lipstick with
+                a compatible refill and enjoy your shade again.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="calculator">
+
+    <h2>HOW MUCH COULD YOU SAVE? 💚</h2>
+
+    <p>
+        Choose how many lipstick refills you would purchase.
+    </p>
+
+    <input
+        type="number"
+        id="refill-count"
+        min="1"
+        max="100"
+        value="3"
+        aria-label="Number of lipstick refills"
+    >
+
+    <div class="savings-result" id="savings-result">
+        £18.00
+    </div>
+
+    <p id="savings-description">
+        You could save £18 by choosing 3 refills
+        instead of 3 new lipsticks.
+    </p>
+
+</section>
+
+<footer>
+    <h2>REVIVE BEAUTY CO.</h2>
+    <p>Your Lips. Your Shade. Your Revival.</p>
+    <p>© 2026 Revive Beauty Co. | University Demonstration Website</p>
+</footer>
+
+<script>
+const refills = [
+    {
+        name: "Bare Bloom",
+        color: "#B77B70",
+        description: "Your everyday warm nude."
+    },
+    {
+        name: "Rose Revival",
+        color: "#A94F64",
+        description: "A romantic dusty rose."
+    },
+    {
+        name: "Petal Kiss",
+        color: "#E58A9B",
+        description: "A delicate soft pink."
+    },
+    {
+        name: "Velvet Red",
+        color: "#B71C36",
+        description: "A timeless statement red."
+    },
+    {
+        name: "Berry Bliss",
+        color: "#69243F",
+        description: "A rich, deep berry."
+    }
+];
+
+function createRefillVisual(color) {
+    const visual = document.createElement("div");
+
+    visual.className = "refill-illustration";
+    visual.style.setProperty("--shade", color);
+
+    visual.innerHTML = `
+        <div class="refill-bullet"></div>
+        <div class="refill-holder">reVive</div>
+        <div class="refill-label">LIPSTICK REFILL ♻️</div>
+    `;
+
+    return visual;
+}
+
+function getBasket() {
+    try {
+        const saved = JSON.parse(
+            localStorage.getItem("reviveBasket")
+        );
+
+        return Array.isArray(saved) ? saved : [];
+    } catch {
+        return [];
+    }
+}
+
+function updateBagCount() {
+    const count = getBasket().reduce(
+        (total, item) => total + (Number(item.quantity) || 1),
+        0
+    );
+
+    document.getElementById("bag-count").textContent = count;
+}
+
+function addRefill(shade) {
+    const basket = getBasket();
+
+    basket.push({
+        id: Date.now() + "-" +
+            Math.random().toString(36).slice(2),
+        name: "Revive Lipstick Refill",
+        price: 13,
+        shade: shade,
+        engraving: "",
+        quantity: 1
+    });
+
+    localStorage.setItem(
+        "reviveBasket",
+        JSON.stringify(basket)
+    );
+
+    updateBagCount();
+}
+
+const grid = document.getElementById("product-grid");
+
+refills.forEach(refill => {
+    const card = document.createElement("article");
+    card.className = "product-card";
+
+    const visual = document.createElement("div");
+    visual.className = "product-visual";
+    visual.appendChild(createRefillVisual(refill.color));
+
+    const title = document.createElement("h3");
+    title.textContent = refill.name;
+
+    const description = document.createElement("p");
+    description.textContent = refill.description;
+
+    const swatch = document.createElement("div");
+    swatch.className = "swatch";
+    swatch.style.backgroundColor = refill.color;
+
+    const oldPrice = document.createElement("p");
+    oldPrice.className = "old-price";
+    oldPrice.textContent = "Full lipstick: £19.00";
+
+    const price = document.createElement("p");
+    price.className = "price";
+    price.textContent = "£13.00";
+
+    const saving = document.createElement("p");
+    saving.className = "saving";
+    saving.textContent = "SAVE £6";
+
+    const button = document.createElement("button");
+    button.className = "add-btn";
+    button.type = "button";
+    button.textContent = "ADD REFILL TO BAG";
+
+    const feedback = document.createElement("p");
+    feedback.className = "feedback";
+    feedback.setAttribute("role", "status");
+
+    button.addEventListener("click", () => {
+        addRefill(refill.name);
+        feedback.textContent =
+            refill.name + " refill added to bag! 💗";
+    });
+
+    card.append(
+        visual,
+        title,
+        description,
+        swatch,
+        oldPrice,
+        price,
+        saving,
+        button,
+        feedback
+    );
+
+    grid.appendChild(card);
+});
+
+const selector = document.getElementById("refill-selector");
+const preview = document.getElementById("selected-preview");
+
+function updatePreview() {
+    const selected = refills[Number(selector.value)];
+
+    preview.replaceChildren(
+        createRefillVisual(selected.color)
+    );
+
+    document.getElementById("selected-feedback").textContent = "";
+}
+
+selector.addEventListener("change", updatePreview);
+
+document.getElementById("selected-add").addEventListener(
+    "click",
+    () => {
+        const selected = refills[Number(selector.value)];
+
+        addRefill(selected.name);
+
+        document.getElementById("selected-feedback").textContent =
+            selected.name + " refill added to your bag! 💗";
+    }
+);
+
+const refillCount = document.getElementById("refill-count");
+
+function updateSavings() {
+    const quantity = Math.min(
+        100,
+        Math.max(1, Math.floor(Number(refillCount.value) || 1))
+    );
+
+    const savings = quantity * 6;
+
+    document.getElementById("savings-result").textContent =
+        "£" + savings.toFixed(2);
+
+    document.getElementById("savings-description").textContent =
+        "You could save £" + savings +
+        " by choosing " + quantity +
+        " refill" + (quantity === 1 ? "" : "s") +
+        " instead of " + quantity + " new lipstick" +
+        (quantity === 1 ? "" : "s") + ".";
+}
+
+refillCount.addEventListener("input", updateSavings);
+
+updatePreview();
+updateSavings();
+updateBagCount();
+</script>
+
+<script src="beauty-chat.js"></script>
+<script src="floating-chat.js"></script>
+
+</body>
+</html>
