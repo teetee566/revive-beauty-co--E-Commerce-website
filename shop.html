@@ -1,165 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Shop All | Revive Beauty Co.</title>
 
 <style>
 :root {
+    --sage: #c9dfc5;
+    --dark: #263e32;
     --pink: #f8dce6;
-    --green: #c9dfc5;
-    --darkgreen: #263e32;
     --cream: #faf8f5;
+    --rose: #a65373;
 }
 
-* { box-sizing: border-box; }
+* {
+    box-sizing: border-box;
+}
 
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    color: #222;
+    color: var(--dark);
     background: white;
 }
 
 .announcement {
     background: var(--pink);
-    text-align: center;
     padding: 12px;
-    font-size: 13px;
+    text-align: center;
+    font-size: 12px;
     font-weight: bold;
 }
 
 header {
     text-align: center;
-    padding: 25px;
-    border-bottom: 1px solid #eee;
+    padding: 30px 15px;
 }
 
 .logo {
     font-family: Georgia, serif;
-    font-size: 30px;
-    color: var(--darkgreen);
+    font-size: 32px;
     letter-spacing: 2px;
+}
+
+header p {
+    font-size: 13px;
+    color: #777;
 }
 
 nav {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 18px;
     padding: 20px;
+    border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
 }
 
 nav a {
+    color: var(--dark);
     text-decoration: none;
-    color: #222;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: bold;
 }
 
-nav a:hover { color: #b66b88; }
+nav a:hover {
+    color: var(--rose);
+}
 
-.shop-heading {
+.hero {
+    background: var(--cream);
     text-align: center;
-    padding: 65px 20px 35px;
+    padding: 60px 20px;
 }
 
-.shop-heading h1 {
+.hero h1 {
     font-family: Georgia, serif;
-    font-size: 45px;
-    color: var(--darkgreen);
+    font-size: 44px;
+    margin-bottom: 15px;
 }
 
-.shop-heading p { color: #666; }
+.hero p {
+    color: #666;
+    line-height: 1.7;
+}
+
+.hero img {
+    display: block;
+    width: 100%;
+    max-width: 1050px;
+    height: auto;
+    margin: 35px auto 0;
+    border-radius: 12px;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: var(--sage);
+    padding: 12px 22px;
+    margin-top: 25px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.collection {
+    max-width: 1250px;
+    margin: 65px auto;
+    padding: 0 20px;
+}
+
+.collection h2 {
+    font-family: Georgia, serif;
+    font-size: 34px;
+    text-align: center;
+}
+
+.collection-intro {
+    text-align: center;
+    color: #777;
+    margin-bottom: 40px;
+}
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 25px;
-    max-width: 1300px;
-    margin: auto;
-    padding: 30px 5% 80px;
 }
 
 .product-card {
     border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 22px;
+    text-align: center;
     background: white;
-    padding: 15px;
 }
 
 .product-image {
-    height: 240px;
-    background: linear-gradient(135deg, #f8dce6, #faf8f5);
+    background: #f8f2ef;
+    border-radius: 10px;
+    padding: 25px 15px;
+    height: 310px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 85px;
+    overflow: hidden;
 }
 
-.product-card h2 {
+.product-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.product-card h3 {
     font-family: Georgia, serif;
     font-size: 23px;
-    color: var(--darkgreen);
+    margin-bottom: 10px;
 }
 
-.price {
-    font-size: 20px;
+.product-card p {
+    font-size: 13px;
+    color: #777;
+    line-height: 1.6;
+}
+
+.product-card .price {
+    font-size: 21px;
     font-weight: bold;
-    color: #a65373;
+    color: var(--dark);
 }
 
-label {
+.product-card select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    border: 1px solid #ddd;
+    background: white;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--dark);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.add-btn:hover {
+    background: var(--rose);
+}
+
+.product-link {
     display: block;
-    margin: 15px 0 7px;
+    margin-top: 15px;
+    color: var(--rose);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.feedback {
+    min-height: 20px;
+    color: var(--dark) !important;
+    font-weight: bold;
+}
+
+/* BRANDED PACKAGING */
+
+.package {
+    position: relative;
+    margin: auto;
+    filter: drop-shadow(8px 10px 7px rgba(0,0,0,.13));
+}
+
+.package-logo {
+    font-family: Georgia, serif;
+    font-size: 19px;
+    color: #111;
+}
+
+.package-subtitle {
+    font-family: Arial, sans-serif;
+    font-size: 9px;
+    color: #111;
+    margin-top: 9px;
+}
+
+/* LIPSTICK */
+
+.lipstick-package {
+    width: 90px;
+}
+
+.lipstick-bullet {
+    height: 90px;
+    background: var(--shade);
+    clip-path: polygon(0 28%, 100% 0, 100% 100%, 0 100%);
+    border-radius: 25px 25px 2px 2px;
+}
+
+.lipstick-neck {
+    height: 50px;
+    background: linear-gradient(90deg, #111, #383838, #111);
+    border-radius: 5px;
+}
+
+.lipstick-case {
+    height: 135px;
+    background: linear-gradient(
+        90deg,
+        #a9bda5,
+        #d1dfca,
+        #a9bda5
+    );
+    border-radius: 5px 5px 12px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* LIP GLOSS */
+
+.gloss-package {
+    width: 90px;
+}
+
+.gloss-cap {
+    height: 85px;
+    background: linear-gradient(90deg, #111, #383838, #111);
+    border-radius: 8px 8px 2px 2px;
+}
+
+.gloss-body {
+    height: 175px;
+    background: linear-gradient(
+        90deg,
+        #a9bda5,
+        #d1dfca,
+        #a9bda5
+    );
+    border-radius: 5px 5px 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gloss-window {
+    width: 55px;
+    height: 22px;
+    background: var(--shade);
+    border-radius: 15px;
+    margin-top: 15px;
+    border: 1px solid #ffffff90;
+}
+
+/* LIP LINER */
+
+.liner-package {
+    width: 45px;
+}
+
+.liner-tip {
+    height: 55px;
+    background: var(--shade);
+    clip-path: polygon(50% 0, 100% 100%, 0 100%);
+}
+
+.liner-body {
+    height: 190px;
+    background: linear-gradient(
+        90deg,
+        #a9bda5,
+        #d1dfca,
+        #a9bda5
+    );
+    position: relative;
+}
+
+.liner-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    white-space: nowrap;
+    font-family: Georgia, serif;
+    font-size: 16px;
+}
+
+.liner-end {
+    height: 30px;
+    background: #171717;
+    border-radius: 0 0 5px 5px;
+}
+
+/* REFILL */
+
+.refill-package {
+    width: 80px;
+}
+
+.refill-bullet {
+    height: 105px;
+    background: var(--shade);
+    clip-path: polygon(0 28%, 100% 0, 100% 100%, 0 100%);
+    border-radius: 20px 20px 2px 2px;
+}
+
+.refill-holder {
+    height: 125px;
+    background: linear-gradient(90deg, #111, #383838, #111);
+    border-radius: 5px 5px 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: Georgia, serif;
+}
+
+.combo-section {
+    background: var(--pink);
+    padding: 65px 20px;
+    text-align: center;
+}
+
+.combo-section h2 {
+    font-family: Georgia, serif;
+    font-size: 35px;
+}
+
+.combo-section p {
+    color: #555;
+    line-height: 1.7;
+}
+
+.combo-btn {
+    display: inline-block;
+    padding: 17px 35px;
+    background: var(--dark);
+    color: white;
+    text-decoration: none;
+    margin-top: 20px;
     font-size: 13px;
     font-weight: bold;
 }
 
-select, input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
-
-button, .btn {
-    display: inline-block;
-    width: 100%;
-    padding: 14px;
-    margin-top: 15px;
-    border: none;
-    background: var(--darkgreen);
-    color: white;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-button:hover, .btn:hover {
-    background: #456653;
-}
-
-.note {
-    font-size: 12px;
-    color: #666;
-}
-
 footer {
-    background: var(--darkgreen);
+    background: var(--dark);
     color: white;
     text-align: center;
-    padding: 35px;
+    padding: 40px 20px;
+}
+
+@media(max-width: 950px) {
+    .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media(max-width: 600px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="announcement">
-    YOUR LIPS. YOUR SHADE. YOUR REVIVAL. 💗
+    DISCOVER YOUR SIGNATURE LIP LOOK — REVIVE BEAUTY CO. 💗
 </div>
 
 <header>
@@ -177,104 +441,59 @@ footer {
     <a href="refills.html">REFILLS</a>
     <a href="lipstick-try-on.html">VIRTUAL TRY-ON</a>
     <a href="engraving.html">ENGRAVING</a>
+    <a href="beauty-chat.html">BEAUTY ASSISTANT</a>
     <a href="basket.html">BAG 🛍️ <span id="bag-count">0</span></a>
 </nav>
 
-<section class="shop-heading">
-    <h1>THE REVIVE COLLECTION</h1>
-    <p>Discover your perfect lip essentials.</p>
+<section class="hero">
+
+    <h1>DISCOVER YOUR SIGNATURE LIP LOOK</h1>
+
+    <p>
+        Explore our collection of luxurious lip essentials.<br>
+        Beautiful colour, personalised experiences
+        and refillable beauty.
+    </p>
+
+    <img
+        src="revive-lipstick-collection.png"
+        alt="Revive Beauty Co. signature lipstick collection"
+        onerror="this.style.display='none'"
+    >
+
+    <div class="hero-badge">
+        BEAUTY, REIMAGINED 💚
+    </div>
+
 </section>
 
-<main class="product-grid">
+<section class="collection">
 
-    <article class="product-card">
-        <div class="product-image">💄</div>
-        <h2>Revive Lipstick</h2>
-        <p>Refillable satin-finish lipstick.</p>
-        <p class="price">£19</p>
+    <h2>SHOP OUR COLLECTION</h2>
 
-        <label for="lipstick-shade">Choose your shade</label>
-        <select id="lipstick-shade">
-            <option>Bare Bloom</option>
-            <option>Rose Revival</option>
-            <option>Petal Kiss</option>
-            <option>Velvet Red</option>
-            <option>Berry Bliss</option>
-        </select>
+    <p class="collection-intro">
+        Your favourite lip essentials, designed for every look.
+    </p>
 
-        <label for="engraving-text">Personalised engraving (optional +£5)</label>
-        <input id="engraving-text" maxlength="20"
-               placeholder="Enter name or initials">
+    <div class="product-grid" id="product-grid"></div>
 
-        <p class="note">Engraving adds £5 to your lipstick.</p>
+</section>
 
-        <button onclick="addLipstick()">ADD TO BAG</button>
-    </article>
+<section class="combo-section">
 
-    <article class="product-card">
-        <div class="product-image">✏️</div>
-        <h2>Revive Lip Liner</h2>
-        <p>Define and enhance your lips.</p>
-        <p class="price">£10</p>
+    <h2>BUILD YOUR PERFECT LIP COMBO 💋</h2>
 
-        <label for="liner-shade">Choose your shade</label>
-        <select id="liner-shade">
-            <option>Soft Nude</option>
-            <option>Rosewood</option>
-            <option>Deep Berry</option>
-        </select>
+    <p>
+        Choose your favourite lipstick, lip liner and lip gloss.<br>
+        Create your personalised bundle for just £40
+        and save £5!
+    </p>
 
-        <button onclick="addProduct('Revive Lip Liner', 10, 'liner-shade')">
-            ADD TO BAG
-        </button>
-    </article>
+    <a href="lip-combo.html" class="combo-btn">
+        BUILD MY LIP COMBO — £40
+    </a>
 
-    <article class="product-card">
-        <div class="product-image">✨</div>
-        <h2>Revive Lip Gloss</h2>
-        <p>High-shine gloss for every look.</p>
-        <p class="price">£16</p>
-
-        <label for="gloss-shade">Choose your shade</label>
-        <select id="gloss-shade">
-            <option>Crystal Clear</option>
-            <option>Rose Glow</option>
-        </select>
-
-        <button onclick="addProduct('Revive Lip Gloss', 16, 'gloss-shade')">
-            ADD TO BAG
-        </button>
-    </article>
-
-    <article class="product-card">
-        <div class="product-image">🎀</div>
-        <h2>Build Your Own Lip Combo</h2>
-        <p>Choose a lipstick, liner and gloss. Save £5.</p>
-        <p class="price">£40</p>
-        <a class="btn" href="lip-combo.html">BUILD YOUR COMBO</a>
-    </article>
-
-    <article class="product-card">
-        <div class="product-image">🌿</div>
-        <h2>Lipstick Refill</h2>
-        <p>Refresh your lipstick without replacing its case.</p>
-        <p class="price">£13</p>
-
-        <label for="refill-shade">Choose your shade</label>
-        <select id="refill-shade">
-            <option>Bare Bloom</option>
-            <option>Rose Revival</option>
-            <option>Petal Kiss</option>
-            <option>Velvet Red</option>
-            <option>Berry Bliss</option>
-        </select>
-
-        <button onclick="addProduct('Lipstick Refill', 13, 'refill-shade')">
-            ADD TO BAG
-        </button>
-    </article>
-
-</main>
+</section>
 
 <footer>
     <h2>REVIVE BEAUTY CO.</h2>
@@ -283,60 +502,241 @@ footer {
 </footer>
 
 <script>
+const products = [
+    {
+        type: "lipstick",
+        name: "Revive Lipstick",
+        price: 19,
+        description: "Our signature refillable satin-finish lipstick.",
+        link: "lipsticks.html",
+        shades: [
+            {name: "Bare Bloom", color: "#B77B70"},
+            {name: "Rose Revival", color: "#A94F64"},
+            {name: "Petal Kiss", color: "#E58A9B"},
+            {name: "Velvet Red", color: "#B71C36"},
+            {name: "Berry Bliss", color: "#69243F"}
+        ]
+    },
+    {
+        type: "gloss",
+        name: "Revive Lip Gloss",
+        price: 16,
+        description: "Beautiful shine in two signature finishes.",
+        link: "lip-gloss.html",
+        shades: [
+            {name: "Crystal Clear", color: "#F8F2F0"},
+            {name: "Rose Glow", color: "#D98CA3"}
+        ]
+    },
+    {
+        type: "liner",
+        name: "Revive Lip Liner",
+        price: 10,
+        description: "Define and enhance your natural lip shape.",
+        link: "lip-liners.html",
+        shades: [
+            {name: "Soft Nude", color: "#98665C"},
+            {name: "Rosewood", color: "#915064"},
+            {name: "Deep Berry", color: "#572638"}
+        ]
+    },
+    {
+        type: "refill",
+        name: "Revive Lipstick Refill",
+        price: 13,
+        description: "Refresh your favourite shade while reusing your case.",
+        link: "refills.html",
+        shades: [
+            {name: "Bare Bloom", color: "#B77B70"},
+            {name: "Rose Revival", color: "#A94F64"},
+            {name: "Petal Kiss", color: "#E58A9B"},
+            {name: "Velvet Red", color: "#B71C36"},
+            {name: "Berry Bliss", color: "#69243F"}
+        ]
+    }
+];
+
+function createPackaging(product, shade) {
+    const packageElement = document.createElement("div");
+
+    packageElement.className = "package";
+    packageElement.style.setProperty("--shade", shade.color);
+
+    if (product.type === "lipstick") {
+        packageElement.classList.add("lipstick-package");
+
+        packageElement.innerHTML = `
+            <div class="lipstick-bullet"></div>
+            <div class="lipstick-neck"></div>
+            <div class="lipstick-case">
+                <span class="package-logo">reVive</span>
+                <span class="package-subtitle">beauty</span>
+            </div>
+        `;
+    }
+
+    if (product.type === "gloss") {
+        packageElement.classList.add("gloss-package");
+
+        packageElement.innerHTML = `
+            <div class="gloss-cap"></div>
+            <div class="gloss-body">
+                <span class="package-logo">reVive</span>
+                <span class="package-subtitle">beauty</span>
+                <div class="gloss-window"></div>
+            </div>
+        `;
+    }
+
+    if (product.type === "liner") {
+        packageElement.classList.add("liner-package");
+
+        packageElement.innerHTML = `
+            <div class="liner-tip"></div>
+            <div class="liner-body">
+                <span class="liner-logo">reVive beauty</span>
+            </div>
+            <div class="liner-end"></div>
+        `;
+    }
+
+    if (product.type === "refill") {
+        packageElement.classList.add("refill-package");
+
+        packageElement.innerHTML = `
+            <div class="refill-bullet"></div>
+            <div class="refill-holder">reVive</div>
+        `;
+    }
+
+    return packageElement;
+}
+
 function getBasket() {
     try {
-        const data = JSON.parse(localStorage.getItem("reviveBasket"));
-        return Array.isArray(data) ? data : [];
+        const saved = JSON.parse(
+            localStorage.getItem("reviveBasket")
+        );
+
+        return Array.isArray(saved) ? saved : [];
     } catch {
         return [];
     }
 }
 
-function saveBasket(basket) {
-    localStorage.setItem("reviveBasket", JSON.stringify(basket));
-    updateBagCount();
-}
-
 function updateBagCount() {
     const count = getBasket().reduce(
-        (total, item) => total + (item.quantity || 1), 0
+        (total, item) => total + (Number(item.quantity) || 1),
+        0
     );
+
     document.getElementById("bag-count").textContent = count;
 }
 
-function addToBasket(name, price, shade, engraving = "") {
+function addToBasket(product, shade) {
     const basket = getBasket();
 
     basket.push({
-        id: Date.now() + "-" + Math.random().toString(36).slice(2),
-        name: name,
-        price: price,
-        shade: shade,
-        engraving: engraving,
+        id: Date.now() + "-" +
+            Math.random().toString(36).slice(2),
+        name: product.name,
+        price: product.price,
+        shade: shade.name,
+        engraving: "",
         quantity: 1
     });
 
-    saveBasket(basket);
-    alert(name + " added to your bag!");
+    localStorage.setItem(
+        "reviveBasket",
+        JSON.stringify(basket)
+    );
+
+    updateBagCount();
 }
 
-function addProduct(name, price, selectId) {
-    const shade = document.getElementById(selectId).value;
-    addToBasket(name, price, shade);
-}
+const grid = document.getElementById("product-grid");
 
-function addLipstick() {
-    const shade = document.getElementById("lipstick-shade").value;
-    const engraving = document.getElementById("engraving-text").value.trim();
-    const price = engraving ? 24 : 19;
+products.forEach(product => {
+    const card = document.createElement("article");
+    card.className = "product-card";
 
-    addToBasket("Revive Lipstick", price, shade, engraving);
-}
+    const visual = document.createElement("div");
+    visual.className = "product-image";
+
+    const title = document.createElement("h3");
+    title.textContent = product.name;
+
+    const description = document.createElement("p");
+    description.textContent = product.description;
+
+    const price = document.createElement("p");
+    price.className = "price";
+    price.textContent = "£" + product.price.toFixed(2);
+
+    const selector = document.createElement("select");
+    selector.setAttribute("aria-label", "Choose " + product.name + " shade");
+
+    product.shades.forEach((shade, index) => {
+        const option = document.createElement("option");
+        option.value = index;
+        option.textContent = shade.name;
+        selector.appendChild(option);
+    });
+
+    function updateVisual() {
+        const shade = product.shades[Number(selector.value)];
+
+        visual.replaceChildren(
+            createPackaging(product, shade)
+        );
+    }
+
+    selector.addEventListener("change", updateVisual);
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "add-btn";
+    button.textContent = "ADD TO BAG";
+
+    const feedback = document.createElement("p");
+    feedback.className = "feedback";
+    feedback.setAttribute("role", "status");
+
+    button.addEventListener("click", () => {
+        const shade = product.shades[Number(selector.value)];
+
+        addToBasket(product, shade);
+
+        feedback.textContent =
+            shade.name + " added to your bag! 💗";
+    });
+
+    const link = document.createElement("a");
+    link.href = product.link;
+    link.className = "product-link";
+    link.textContent = "EXPLORE COLLECTION ↗";
+
+    card.append(
+        visual,
+        title,
+        description,
+        price,
+        selector,
+        button,
+        feedback,
+        link
+    );
+
+    grid.appendChild(card);
+
+    updateVisual();
+});
 
 updateBagCount();
 </script>
+
 <script src="beauty-chat.js"></script>
 <script src="floating-chat.js"></script>
-    
+
 </body>
 </html>
