@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lip Gloss | Revive Beauty Co.</title>
+
+<style>
+:root {
+    --sage: #c9dfc5;
+    --dark: #263e32;
+    --pink: #f8dce6;
+    --cream: #faf8f5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--dark);
+}
+
+.announcement {
+    background: var(--pink);
+    text-align: center;
+    padding: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+header {
+    text-align: center;
+    padding: 30px 15px;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+header p {
+    color: #777;
+    font-size: 13px;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+nav a {
+    color: var(--dark);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.hero {
+    background: var(--cream);
+    text-align: center;
+    padding: 65px 20px;
+}
+
+.hero h1 {
+    font-family: Georgia, serif;
+    font-size: 43px;
+}
+
+.hero p {
+    color: #666;
+    line-height: 1.7;
+}
+
+.collection {
+    max-width: 1050px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.collection h2 {
+    text-align: center;
+    font-family: Georgia, serif;
+    font-size: 32px;
+}
+
+.intro {
+    text-align: center;
+    color: #777;
+    margin-bottom: 40px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.product-card {
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+}
+
+.product-visual {
+    background: #f8f2ef;
+    padding: 35px 15px;
+    border-radius: 10px;
+}
+
+.gloss-tube {
+    width: 85px;
+    margin: auto;
+    filter: drop-shadow(8px 10px 8px rgba(0,0,0,.12));
+}
+
+.gloss-cap {
+    height: 80px;
+    background: linear-gradient(90deg, #111, #333, #080808);
+    border-radius: 9px 9px 2px 2px;
+}
+
+.gloss-neck {
+    height: 12px;
+    background: #1a1a1a;
+}
+
+.gloss-body {
+    height: 180px;
+    background: linear-gradient(
+        90deg,
+        #a9bda5,
+        #d1dfca,
+        #a9bda5
+    );
+    border-radius: 5px 5px 15px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    color: #111;
+}
+
+.gloss-body small {
+    font-family: Arial, sans-serif;
+    font-size: 8px;
+    margin-top: 12px;
+}
+
+.gloss-window {
+    height: 23px;
+    width: 55px;
+    margin-top: 15px;
+    border-radius: 15px;
+    border: 1px solid #ffffff80;
+}
+
+.product-card h3 {
+    font-family: Georgia, serif;
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.product-card p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.swatch {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    margin: 18px auto;
+}
+
+.price {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--dark);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.add-btn:hover {
+    background: #a65373;
+}
+
+.feedback {
+    min-height: 20px;
+    font-size: 13px;
+    color: var(--dark);
+    font-weight: bold;
+}
+
+.selector-section {
+    background: var(--pink);
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.selector-section h2 {
+    font-family: Georgia, serif;
+    font-size: 30px;
+}
+
+.selector-section select {
+    padding: 15px;
+    width: 100%;
+    max-width: 330px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+}
+
+.selector-section button {
+    display: block;
+    margin: 15px auto;
+    padding: 16px 35px;
+    border: none;
+    background: var(--dark);
+    color: white;
+    cursor: pointer;
+}
+
+footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 60px;
+}
+
+@media(max-width: 650px) {
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+    THE REVIVE LIP GLOSS COLLECTION — £16 EACH ✨
+</div>
+
+<header>
+    <div class="logo">REVIVE BEAUTY CO.</div>
+    <p>Beauty, Reimagined.</p>
+</header>
+
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="shop.html">SHOP ALL</a>
+    <a href="lipsticks.html">LIPSTICKS</a>
+    <a href="lip-gloss.html">LIP GLOSS</a>
+    <a href="lip-liners.html">LIP LINERS</a>
+    <a href="lip-combo.html">LIP COMBOS</a>
+    <a href="refills.html">REFILLS</a>
+    <a href="lipstick-try-on.html">VIRTUAL TRY-ON</a>
+    <a href="engraving.html">ENGRAVING</a>
+    <a href="basket.html">BAG 🛍️ <span id="bag-count">0</span></a>
+</nav>
+
+<section class="hero">
+    <h1>THE SIGNATURE LIP GLOSS ✨</h1>
+    <p>
+        Your lips, but glossier.<br>
+        Discover beautiful shine in our signature
+        sage-green packaging.
+    </p>
+</section>
+
+<section class="collection">
+    <h2>FIND YOUR PERFECT GLOSS</h2>
+    <p class="intro">
+        Two beautiful finishes. One irresistible shine.
+    </p>
+
+    <div class="product-grid" id="product-grid"></div>
+</section>
+
+<section class="selector-section">
+    <h2>CHOOSE YOUR GLOSS 💗</h2>
+    <p>Select your favourite finish.</p>
+
+    <select id="gloss-selector" aria-label="Choose lip gloss">
+        <option value="0">Crystal Clear</option>
+        <option value="1">Rose Glow</option>
+    </select>
+
+    <div id="selected-preview"></div>
+
+    <p class="price">£16.00</p>
+
+    <button type="button" id="selected-add">
+        ADD TO BAG — £16
+    </button>
+
+    <p class="feedback" id="selected-feedback" role="status"></p>
+</section>
+
+<footer>
+    <h2>REVIVE BEAUTY CO.</h2>
+    <p>Your Lips. Your Shade. Your Revival.</p>
+    <p>© 2026 Revive Beauty Co. | University Demonstration Website</p>
+</footer>
+
+<script>
+const glosses = [
+    {
+        name: "Crystal Clear",
+        color: "#f8f0ec",
+        description: "A transparent, high-shine finish."
+    },
+    {
+        name: "Rose Glow",
+        color: "#d98ca3",
+        description: "A soft pink gloss for a radiant finish."
+    }
+];
+
+function createGlossVisual(color) {
+    const visual = document.createElement("div");
+    visual.className = "gloss-tube";
+
+    visual.innerHTML = `
+        <div class="gloss-cap"></div>
+        <div class="gloss-neck"></div>
+        <div class="gloss-body">
+            <span>reVive</span>
+            <small>THE SIGNATURE GLOSS</small>
+            <div class="gloss-window"></div>
+        </div>
+    `;
+
+    visual.querySelector(".gloss-window")
+        .style.backgroundColor = color;
+
+    return visual;
+}
+
+function getBasket() {
+    try {
+        const saved = JSON.parse(
+            localStorage.getItem("reviveBasket")
+        );
+
+        return Array.isArray(saved) ? saved : [];
+    } catch {
+        return [];
+    }
+}
+
+function updateBagCount() {
+    const count = getBasket().reduce(
+        (total, item) => total + (Number(item.quantity) || 1),
+        0
+    );
+
+    document.getElementById("bag-count").textContent = count;
+}
+
+function addGloss(shade) {
+    const basket = getBasket();
+
+    basket.push({
+        id: Date.now() + "-" +
+            Math.random().toString(36).slice(2),
+        name: "Revive Lip Gloss",
+        price: 16,
+        shade: shade,
+        engraving: "",
+        quantity: 1
+    });
+
+    localStorage.setItem(
+        "reviveBasket",
+        JSON.stringify(basket)
+    );
+
+    updateBagCount();
+}
+
+const grid = document.getElementById("product-grid");
+
+glosses.forEach(gloss => {
+    const card = document.createElement("article");
+    card.className = "product-card";
+
+    const visual = document.createElement("div");
+    visual.className = "product-visual";
+    visual.appendChild(createGlossVisual(gloss.color));
+
+    const title = document.createElement("h3");
+    title.textContent = gloss.name;
+
+    const description = document.createElement("p");
+    description.textContent = gloss.description;
+
+    const swatch = document.createElement("div");
+    swatch.className = "swatch";
+    swatch.style.backgroundColor = gloss.color;
+
+    const price = document.createElement("p");
+    price.className = "price";
+    price.textContent = "£16.00";
+
+    const button = document.createElement("button");
+    button.className = "add-btn";
+    button.type = "button";
+    button.textContent = "ADD TO BAG";
+
+    const feedback = document.createElement("p");
+    feedback.className = "feedback";
+    feedback.setAttribute("role", "status");
+
+    button.addEventListener("click", () => {
+        addGloss(gloss.name);
+        feedback.textContent = gloss.name + " added to bag! 💗";
+    });
+
+    card.append(
+        visual,
+        title,
+        description,
+        swatch,
+        price,
+        button,
+        feedback
+    );
+
+    grid.appendChild(card);
+});
+
+const selector = document.getElementById("gloss-selector");
+const preview = document.getElementById("selected-preview");
+
+function updatePreview() {
+    const selected = glosses[Number(selector.value)];
+
+    preview.replaceChildren(
+        createGlossVisual(selected.color)
+    );
+
+    document.getElementById("selected-feedback").textContent = "";
+}
+
+selector.addEventListener("change", updatePreview);
+
+document.getElementById("selected-add").addEventListener(
+    "click",
+    () => {
+        const selected = glosses[Number(selector.value)];
+
+        addGloss(selected.name);
+
+        document.getElementById("selected-feedback").textContent =
+            selected.name + " added to your bag! 💗";
+    }
+);
+
+updatePreview();
+updateBagCount();
+</script>
+
+<script src="beauty-chat.js"></script>
+<script src="floating-chat.js"></script>
+
+</body>
+</html>
